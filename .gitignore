@@ -1,0 +1,7 @@
+node_modules/
+dist/
+windows/dist/
+macos/.build/
+macos/build/
+.DS_Store
+*.log
