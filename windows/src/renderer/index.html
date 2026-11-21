@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; media-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; worker-src 'self' blob:;">
+  <title>Meer Theme Manager 3ds</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header id="topbar">
+      <div class="brand">
+        <img src="../../assets/icon.png" alt="">
+        <div><b>MtM3</b><small>Meer Theme Manager 3ds</small></div>
+      </div>
+      <div class="doc"><span class="dot" id="dirtyDot"></span><b id="docName">Untitled Theme</b><span id="docPath"></span></div>
+      <div class="actions" id="topActions"></div>
+    </header>
+    <div id="main">
+      <nav id="sidebar"></nav>
+      <section id="editor"></section>
+      <section id="preview">
+        <div class="label">Live Preview</div>
+        <div class="console" id="console">
+          <div class="bezel"><canvas id="topCanvas"></canvas></div>
+          <div class="bezel"><canvas id="bottomCanvas"></canvas></div>
+        </div>
+        <div class="pcontrols" id="previewControls"></div>
+      </section>
+    </div>
+  </div>
+  <script src="../engine/themekit.js"></script>
+  <script src="icons.js"></script>
+  <script src="ui.js"></script>
+  <script src="imaging.js"></script>
+  <script src="preview.js"></script>
+  <script src="audio.js"></script>
+  <script src="app.js"></script>
+  <script src="pages.js"></script>
+  <script src="converter.js"></script>
+  <script src="editor.js"></script>
+  <script src="demo.js"></script>
+</body>
+</html>
