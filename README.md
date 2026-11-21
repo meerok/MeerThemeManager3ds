@@ -9,8 +9,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/meerok/MeerThemeManager3ds/releases/latest"><img alt="Download for Windows" src="https://img.shields.io/badge/Download-Windows%20x64-5b7cff?style=for-the-badge&logo=windows"></a>
-  <a href="#macos"><img alt="macOS" src="https://img.shields.io/badge/macOS-build%20from%20source-333?style=for-the-badge&logo=apple"></a>
+  <a href="https://github.com/meerok/MeerThemeManager3ds/releases/latest"><img alt="Download for Windows" src="https://img.shields.io/badge/Windows-download-5b7cff?style=for-the-badge&logo=windows"></a>
+  <a href="https://github.com/meerok/MeerThemeManager3ds/releases/latest"><img alt="Download for macOS" src="https://img.shields.io/badge/macOS-download-333?style=for-the-badge&logo=apple"></a>
+  <a href="https://github.com/meerok/MeerThemeManager3ds/releases/latest"><img alt="Download for Linux" src="https://img.shields.io/badge/Linux-download-e95420?style=for-the-badge&logo=linux&logoColor=white"></a>
   <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-3ddc97?style=for-the-badge">
 </p>
 
@@ -19,6 +20,8 @@
 </p>
 
 I made MtM3 because putting a 3DS theme together usually means juggling a theme editor, an audio looper and an image resizer. This does all of it in one app. You give it normal pictures and songs (PNG, JPG, MP3 and so on) and it handles the resizing, the 3DS texture format, the looping `bgm.bcstm`, `info.smdh` and `preview.png`. There's a live preview of both screens so you can see what it'll look like on the console while you edit.
+
+It runs on **Windows, Mac and Linux**, and it's free and open source.
 
 ---
 
@@ -63,27 +66,40 @@ I made MtM3 because putting a 3DS theme together usually means juggling a theme 
 
 ## Download & install
 
+Every download is on the **[Releases page](https://github.com/meerok/MeerThemeManager3ds/releases/latest)**. Grab the one for your computer (the version number in the file name changes with each release).
+
+| Your computer | File to download |
+|---|---|
+| Windows 10 or 11 (64-bit) | `MtM3-x.x.x-Windows-x64.zip` |
+| Mac with Apple Silicon (M1 or newer) | `MtM3-x.x.x-macOS-AppleSilicon.zip` |
+| Linux (64-bit) | `MtM3-x.x.x-Linux-x64.tar.gz` |
+
 ### Windows
 
-1. Go to **[Releases](https://github.com/meerok/MeerThemeManager3ds/releases/latest)** and download `MtM3-2.0.0-Windows-x64.zip`.
-2. Right-click the zip and choose **Extract All…**
-3. Open the `MtM3` folder and double-click **`MtM3.exe`**.
+1. Download the Windows zip and right-click it, then choose **Extract All…**
+2. Open the `MtM3` folder and double-click **`MtM3.exe`**. There's no installer.
 
 > If Windows shows **"Windows protected your PC"**, that's because the app isn't code-signed (the certificates cost money). Click **More info**, then **Run anyway**. You only have to do this once.
 
-Works on Windows 10 and 11 (64-bit). Nothing else needs to be installed.
-
 ### macOS
 
-The Mac version is a native SwiftUI app with the same features. For now you build it yourself from the [`macos/`](macos) folder:
+1. Download the macOS zip and double-click it to unzip.
+2. Drag **Meer Theme Manager 3ds** into your **Applications** folder.
+3. The first time, **right-click** the app and choose **Open**, then click **Open** again.
+
+> macOS will say it "can't check the app for malicious software" because it isn't signed with a paid Apple certificate. Right-clicking and choosing Open gets around it. You can also go to **System Settings > Privacy & Security** and click **Open Anyway**. You only have to do this once.
+
+Needs macOS 14 (Sonoma) or newer. The download is for Apple Silicon Macs. If you have an older Intel Mac, you can [build it yourself](#macos-app-swiftui).
+
+### Linux
 
 ```bash
-cd macos
-./build_app.sh
-open "build/Meer Theme Manager 3ds.app"
+tar -xzf MtM3-*-Linux-x64.tar.gz
+cd MtM3
+./mtm3
 ```
 
-You need macOS 14 or newer and Xcode (or just the Xcode Command Line Tools). More details in [Building from source](#building-from-source).
+> If it closes straight away with a message about the "sandbox", start it with `./mtm3 --no-sandbox`. Some distros (like newer Ubuntu) block the sandbox Electron apps use by default.
 
 ### What you need on your 3DS
 
@@ -284,6 +300,9 @@ If you want the technical details of every file MtM3 writes, see **[docs/FILE-FO
 **Windows says "Windows protected your PC".**
 The app isn't code-signed. Click **More info**, then **Run anyway**.
 
+**My Mac says it can't open the app or can't check it.**
+Right-click the app and choose **Open**, then click **Open** again. Or go to **System Settings > Privacy & Security** and click **Open Anyway**.
+
 **My theme installs but there's no music.**
 Check that the switch on the Music card is on (the Export checklist will list `bgm.bcstm` if it's included). Also make sure your theme manager is installing the theme *with* BGM. The music has to be under 3.2 MB.
 
@@ -309,7 +328,7 @@ Open an [issue](https://github.com/meerok/MeerThemeManager3ds/issues), and attac
 
 ## Keyboard shortcuts
 
-| Action | Windows | macOS |
+| Action | Windows / Linux | macOS |
 |---|---|---|
 | New theme | Ctrl + N | ⌘ N |
 | Open theme folder | Ctrl + O | ⌘ O |
@@ -325,7 +344,9 @@ Open an [issue](https://github.com/meerok/MeerThemeManager3ds/issues), and attac
 
 ## Building from source
 
-### Windows app (Electron)
+You only need this if you want to change the code. Normal users can just grab a download from [Releases](https://github.com/meerok/MeerThemeManager3ds/releases/latest).
+
+### Windows and Linux app (Electron)
 
 You need [Node.js](https://nodejs.org/) 18 or newer.
 
@@ -338,6 +359,8 @@ npm run package-win     # build dist/MtM3-win32-x64/MtM3.exe (works on Windows, 
 ```
 
 ### macOS app (SwiftUI)
+
+You need macOS 14 or newer and Xcode (or just the Xcode Command Line Tools).
 
 ```bash
 cd macos
@@ -352,13 +375,23 @@ You can also open `macos/Package.swift` in Xcode and run the **MtM3** scheme. `m
 ./build/mtm3-cli info "My Theme.zip"
 ```
 
+### How releases are built
+
+Releases are built by GitHub, not on anyone's computer. When a new release is published, the [**Build release downloads**](.github/workflows/release.yml) workflow builds the Windows, macOS and Linux versions and attaches them to the release automatically. It can also be run by hand from the **Actions** tab to rebuild the downloads for an older release.
+
+To make a new release:
+
+1. Bump `version` in `windows/package.json`.
+2. On GitHub, go to **Releases > Draft a new release**, create a tag like `v2.1.0` and publish it.
+3. Wait a few minutes. The three downloads show up on the release by themselves.
+
 ---
 
 ## Project layout
 
 ```
 MtM3/
-├── windows/                 Windows app (Electron)
+├── windows/                 Windows and Linux app (Electron)
 │   ├── src/engine/themekit.js   theme engine: LZ11, textures, body_LZ.bin, SMDH,
 │   │                            DSP-ADPCM, BCSTM, BCWAV, ZIP, audio editing
 │   ├── src/renderer/            UI, live preview, image editor, converters
@@ -367,10 +400,11 @@ MtM3/
 │   └── scripts/package-win.js   builds MtM3.exe (sets the icon and version info without Wine)
 ├── macos/                   macOS app (SwiftUI), ThemeKit Swift package and mtm3-cli
 ├── sample-theme/            "Neon Sunset", an example theme made with MtM3, plus its source art and audio
-└── docs/                    screenshots, logo, file format reference
+├── docs/                    screenshots, logo, file format reference
+└── .github/workflows/       builds the Windows, macOS and Linux downloads for each release
 ```
 
-Both apps use the same engine design. `npm test` checks the JavaScript engine byte for byte against reference files made by a separate implementation of the engine.
+The Windows and Linux app and the Mac app use the same engine design. `npm test` checks the JavaScript engine byte for byte against reference files made by a separate implementation of the engine.
 
 ---
 
