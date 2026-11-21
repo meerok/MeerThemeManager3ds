@@ -1,0 +1,102 @@
+# Builds MtM3 for Windows, macOS and Linux and attaches the downloads to a GitHub release.
+# Runs automatically when a release is published. You can also run it by hand from the
+# Actions tab ("Build release downloads" > "Run workflow") to add downloads to an older release.
+name: Build release downloads
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to build and attach to (for example v2.0.0)"
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  TAG: ${{ github.event.release.tag_name || inputs.tag }}
+
+jobs:
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: windows
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
+      - run: npm run package-win
+      - name: Zip and upload
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $ver = "$env:TAG".TrimStart('v')
+          $name = "MtM3-$ver-Windows-x64.zip"
+          Rename-Item dist/MtM3-win32-x64 MtM3
+          Compress-Archive -Path dist/MtM3 -DestinationPath $name
+          gh release upload "$env:TAG" $name --clobber --repo "${{ github.repository }}"
+
+  macos:
+    name: macOS
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: macos
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - run: chmod +x build_app.sh && ./build_app.sh
+      - name: Zip and upload
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ver="${TAG#v}"
+          name="MtM3-$ver-macOS-AppleSilicon.zip"
+          ditto -c -k --sequesterRsrc --keepParent "build/Meer Theme Manager 3ds.app" "$name"
+          gh release upload "$TAG" "$name" --clobber --repo "${{ github.repository }}"
+
+  linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: windows
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
+      - name: Build
+        run: |
+          node -e "
+          const { packager } = require('@electron/packager');
+          const pkg = require('./package.json');
+          packager({ dir: '.', out: 'dist', name: 'MtM3', executableName: 'mtm3', platform: 'linux', arch: 'x64',
+            overwrite: true, asar: false, prune: true, appVersion: pkg.version,
+            ignore: [/^\/dist/, /^\/test/, /^\/scripts/, /^\/\.git/, /\.md$/] })
+            .then((p) => console.log('Built', p)).catch((e) => { console.error(e); process.exit(1); });
+          "
+      - name: Package and upload
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ver="${TAG#v}"
+          name="MtM3-$ver-Linux-x64.tar.gz"
+          mv dist/MtM3-linux-x64 dist/MtM3
+          tar -czf "$name" -C dist MtM3
+          gh release upload "$TAG" "$name" --clobber --repo "${{ github.repository }}"
