@@ -286,14 +286,14 @@ struct IconsSection: View {
                 }
             }
 
-            ToggleCard(title: "File Colors", symbol: "doc.fill", subtitle: "Colors of the 3D file / cartridge icons.", isOn: $doc.theme.flags.fileColor) {
+            ToggleCard(title: "File Colors", symbol: "doc.fill", subtitle: "The frame around each software icon in the grid.", isOn: $doc.theme.flags.fileColor) {
                 ColorRow(label: "Main", color: $doc.theme.colors.file.main)
                 ColorRow(label: "Light", color: $doc.theme.colors.file.light)
                 ColorRow(label: "Shading", color: $doc.theme.colors.file.shading)
                 ColorAlphaRow(label: "Shadow", color: $doc.theme.colors.file.shadow)
             }
 
-            ToggleCard(title: "File Pictures", symbol: "doc.richtext", subtitle: "Your own art on file icons (both images required).",
+            ToggleCard(title: "File Pictures", symbol: "doc.richtext", subtitle: "Your own art for the frame around software icons (both images required).",
                        isOn: $doc.theme.flags.fileTexture, offText: "Files use their colors. Turn on to add pictures.") {
                 HStack(alignment: .top, spacing: 16) {
                     ImageSlotView(slot: .fileLarge, title: "Large", detail: "64 × 128", thumbHeight: 110)
@@ -331,20 +331,20 @@ struct ButtonsSection: View {
                 ColorRow(label: "Outline", color: $doc.theme.colors.arrow.border)
             }
 
-            ToggleCard(title: "Open & Close Buttons", symbol: "capsule.fill", subtitle: "“Open” appears when software is selected; “Close” appears in folders.", isOn: $doc.theme.flags.openCloseColor) {
+            ToggleCard(title: "Open & Close Buttons", symbol: "capsule.fill", subtitle: "The bar along the bottom of the touch screen. “Close” takes up its left side while software is suspended.", isOn: $doc.theme.flags.openCloseColor) {
                 OpenCloseEditor(title: "Open Button", colors: $doc.theme.colors.open)
                 Divider()
                 OpenCloseEditor(title: "Close Button", colors: $doc.theme.colors.close)
             }
 
-            ToggleCard(title: "Top Corner Buttons", symbol: "rectangle.portrait.topleft.inset.filled", subtitle: "The buttons in the top-left and top-right of the bottom screen.", isOn: $doc.theme.flags.topCornerColor) {
+            ToggleCard(title: "Camera Tabs", symbol: "camera.fill", subtitle: "The camera shortcut tabs in the lower corners of the top screen.", isOn: $doc.theme.flags.topCornerColor) {
                 ColorRow(label: "Main", color: $doc.theme.colors.topCorner.main)
                 ColorRow(label: "Light", color: $doc.theme.colors.topCorner.light)
                 ColorRow(label: "Shadow", color: $doc.theme.colors.topCorner.shadow)
                 ColorRow(label: "Icon / Text", color: $doc.theme.colors.topCorner.text)
             }
 
-            ToggleCard(title: "Bottom Corner Buttons", symbol: "rectangle.portrait.bottomleft.inset.filled", subtitle: "The buttons in the bottom-left and bottom-right corners.", isOn: $doc.theme.flags.bottomCornerColor) {
+            ToggleCard(title: "Settings & Icon Size Buttons", symbol: "rectangle.portrait.topleft.inset.filled", subtitle: "The HOME Menu settings and icon size buttons along the top of the touch screen.", isOn: $doc.theme.flags.bottomCornerColor) {
                 ColorRow(label: "Main", color: $doc.theme.colors.bottomCorner.main)
                 ColorRow(label: "Highlight", color: $doc.theme.colors.bottomCorner.highlight)
                 ColorRow(label: "Border", color: $doc.theme.colors.bottomCorner.border)
@@ -358,6 +358,7 @@ struct ButtonsSection: View {
 }
 
 struct OpenCloseEditor: View {
+    @Environment(ThemeDocument.self) private var doc
     let title: String
     @Binding var colors: OpenCloseColors
     var body: some View {
@@ -378,6 +379,10 @@ struct OpenCloseEditor: View {
             }
             .padding(.horizontal, 6)
         }
+        .onChange(of: colors) { _, _ in
+            // Show the Close button while its colors are being edited.
+            if title.hasPrefix("Close") && doc.previewMode != .paused { doc.previewMode = .paused }
+        }
     }
 }
 
@@ -389,7 +394,7 @@ struct FolderViewSection: View {
     var body: some View {
         @Bindable var doc = doc
         EditorPage {
-            PageHeader(section: .folderView, text: "How the bottom screen looks while a folder is open. Switch the preview to Folder view to see it.")
+            PageHeader(section: .folderView, text: "How the bottom screen looks while a folder is open. The preview shows the Folder view while you're on this page.")
             PaletteStrip()
 
             ToggleCard(title: "Folder Background", symbol: "square.inset.filled", subtitle: "The inner panel shown inside folders.", isOn: $doc.theme.flags.folderBackgroundColor) {
@@ -427,11 +432,11 @@ struct TextSection: View {
     var body: some View {
         @Bindable var doc = doc
         EditorPage {
-            PageHeader(section: .text, text: "Text boxes on the top screen, like the selected software's title.")
+            PageHeader(section: .text, text: "The software title box shown at the biggest icon size, and the demo message. The preview shows Big Icons while you're on this page.")
             PaletteStrip()
 
             Card {
-                CardHeader(title: "Software Title Box", symbol: "character.bubble", subtitle: "The box showing the name of the selected software.")
+                CardHeader(title: "Software Title Box", symbol: "character.bubble", subtitle: "The name of the selected software, shown above the cursor when icons are at their biggest size.")
                 Picker("Style", selection: $doc.theme.flags.gameTextDrawType) {
                     Text("Default").tag(GameTextDrawType.standard)
                     Text("Custom Colors").tag(GameTextDrawType.colored)
@@ -446,11 +451,11 @@ struct TextSection: View {
                     ColorAlphaRow(label: "Shadow", color: $doc.theme.colors.gameText.shadow)
                     ColorRow(label: "Text", color: $doc.theme.colors.gameText.text)
                 } else if doc.theme.flags.gameTextDrawType == .hidden {
-                    Text("The one-row title box is hidden, leaving your top wallpaper unobstructed.").font(.callout).foregroundStyle(.secondary)
+                    Text("The title box above big icons is hidden.").font(.callout).foregroundStyle(.secondary)
                 }
             }
 
-            ToggleCard(title: "Demo Text", symbol: "text.alignleft", subtitle: "Box used for demo and informational text on the top screen.", isOn: $doc.theme.flags.demoTextColor) {
+            ToggleCard(title: "Demo Text", symbol: "text.alignleft", subtitle: "The message on the top screen that shows how many uses a demo has left.", isOn: $doc.theme.flags.demoTextColor) {
                 ColorRow(label: "Box", color: $doc.theme.colors.demoText.main)
                 ColorRow(label: "Text", color: $doc.theme.colors.demoText.text)
             }
