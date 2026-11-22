@@ -671,11 +671,11 @@
       const enc = audio.channels.map((ch, i) => { const e = encodeChannel(ch, ls, audio.looping); if (progress) progress((i + 1) / cc); return e; });
       const tc = (cc + 1) >> 1, ads = nm(s2bytes(sc), 0x20), ic = Math.max(1, Math.ceil(sc / SPB));
       const lbs = sc - (ic - 1) * SPB, lbnp = s2bytes(lbs), lb = nm(lbnp, 0x20), se = Math.max(1, Math.ceil(sc / SPB));
-      const i1 = 0x38 + 0xC, i2 = 4 + 8 * tc, i3 = (4 + 8 * cc) + 0x14 * tc + 8 * cc + 0x2E * cc;
+      const i1 = 0x38, i2 = 4 + 8 * tc, i3 = (4 + 8 * cc) + 0x14 * tc + 8 * cc + 0x2E * cc;
       const isz = nm(8 + 24 + i1 + i2 + i3, 0x20), ssz = nm(8 + se * cc * 4, 0x20);
       const hs = 0x40, io = hs, so = hs + isz, dof = so + ssz, dsz = 0x20 + ads * cc, fs = dof + dsz;
       const w = new ByteWriter(fs);
-      w.ascii('CSTM'); w.u16(0xFEFF); w.u16(hs); w.u32(0x0201 << 16); w.u32(fs); w.u16(3); w.u16(0);
+      w.ascii('CSTM'); w.u16(0xFEFF); w.u16(hs); w.u32(0x02000000); w.u32(fs); w.u16(3); w.u16(0);
       w.u16(0x4000); w.u16(0); w.u32(io); w.u32(isz);
       w.u16(0x4001); w.u16(0); w.u32(so); w.u32(ssz);
       w.u16(0x4002); w.u16(0); w.u32(dof); w.u32(dsz);
@@ -689,7 +689,6 @@
       w.u32(audio.sampleRate); w.u32(ls); w.u32(sc); w.u32(ic); w.u32(BS); w.u32(SPB);
       w.u32(lbnp); w.u32(lbs); w.u32(lb); w.u32(4); w.u32(SPB);
       w.u16(0x1F00); w.u16(0); w.u32(0x18);
-      w.u16(0x0100); w.u16(0); w.u32(0); w.i32(-1);
       const cts = 4 + 8 * cc;
       w.u32(tc); for (let i = 0; i < tc; i++) { w.u16(0x4101); w.u16(0); w.u32(i2 + cts + 0x14 * i); }
       const tts = 0x14 * tc;
