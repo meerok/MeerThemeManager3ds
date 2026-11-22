@@ -171,8 +171,8 @@ struct PreviewPane: View {
     var body: some View {
         @Bindable var doc = doc
         GeometryReader { geo in
-            let fitScale = min((geo.size.width - 48) / 428, (geo.size.height - 120) / 512)
-            let scale = max(0.5, min(doc.previewZoom, fitScale))
+            let fitScale = min((geo.size.width - 40) / ConsoleShell.size.width, (geo.size.height - 110) / ConsoleShell.size.height)
+            let scale = max(0.4, min(doc.previewZoom, fitScale))
             ZStack {
                 LinearGradient(colors: [Color(white: 0.20), Color(white: 0.13)], startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
@@ -191,13 +191,13 @@ struct PreviewPane: View {
     private var controls: some View {
         @Bindable var doc = doc
         return HStack(spacing: 10) {
-            Picker("View", selection: $doc.previewFolderMode) {
-                Label("Home", systemImage: "house.fill").tag(false)
-                Label("Folder", systemImage: "folder.fill").tag(true)
+            Picker("View", selection: $doc.previewMode) {
+                ForEach(PreviewMode.allCases) { m in Text(m.title).tag(m) }
             }
             .pickerStyle(.segmented)
             .labelsHidden()
-            .frame(width: 170)
+            .frame(width: 330)
+            .help("Which HOME Menu screen to show")
 
             Button {
                 doc.previewAnimating.toggle()
