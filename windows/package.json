@@ -1,7 +1,7 @@
 {
   "name": "mtm3",
   "productName": "MtM3",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Meer Theme Manager 3ds — make Nintendo 3DS HOME Menu themes",
   "main": "src/main.js",
   "author": "Meer",
