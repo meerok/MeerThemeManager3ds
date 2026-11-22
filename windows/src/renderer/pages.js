@@ -151,28 +151,28 @@ const Pages = {
       toggleCard('Folder Pictures', 'image', 'Wrap your own art onto folder icons (both pictures required).', () => f.folderTexture, (v) => { f.folderTexture = v; }, () => [
         el('div', { class: 'cols2' }, imageSlot('folderClosed', 'Closed', '128 × 64', 90), imageSlot('folderOpen', 'Open', '128 × 64', 90)),
         !(t.folderClosed && t.folderOpen) ? banner('Add both the closed and open pictures, or folder pictures won\'t be included.', 'warn', true) : null], 'Folders use their colors. Turn on to add pictures.'),
-      toggleCard('File Colors', 'file', 'Colors of the 3D file / cartridge icons.', () => f.fileColor, (v) => { f.fileColor = v; }, () => [
+      toggleCard('File Colors', 'file', 'The frame around each software icon in the grid.', () => f.fileColor, (v) => { f.fileColor = v; }, () => [
         colorRow('Main', null, () => c.file.main, (v) => { c.file.main = v; }),
         colorRow('Light', null, () => c.file.light, (v) => { c.file.light = v; }),
         colorRow('Shading', null, () => c.file.shading, (v) => { c.file.shading = v; }),
         colorAlphaRow('Shadow', null, () => c.file.shadow, (v) => { c.file.shadow = v; })]),
-      toggleCard('File Pictures', 'image', 'Your own art on file icons (both pictures required).', () => f.fileTexture, (v) => { f.fileTexture = v; }, () => [
+      toggleCard('File Pictures', 'image', 'Your own art for the frame around software icons (both pictures required).', () => f.fileTexture, (v) => { f.fileTexture = v; }, () => [
         el('div', { class: 'cols2' }, imageSlot('fileLarge', 'Large', '64 × 128', 110), imageSlot('fileSmall', 'Small', '32 × 64', 110)),
         !(t.fileLarge && t.fileSmall) ? banner('Add both the large and small pictures, or file pictures won\'t be included.', 'warn', true) : null], 'Files use their colors. Turn on to add pictures.'));
   },
 
   buttons() {
     const f = F(), c = C();
-    const oc = (title, o) => [el('b', { class: 'muted small', style: { marginTop: '4px' } }, title),
-      colorRow('Button', null, () => o.unpressed, (v) => { o.unpressed = v; }),
-      colorRow('Button (Pressed)', null, () => o.pressed, (v) => { o.pressed = v; }),
-      colorRow('Highlight', null, () => o.light, (v) => { o.light = v; }),
-      colorRow('Glow / Edge', null, () => o.glow, (v) => { o.glow = v; }),
-      colorAlphaRow('Shadow', null, () => o.shadow, (v) => { o.shadow = v; }),
-      colorRow('Text', null, () => o.textUnpressed, (v) => { o.textUnpressed = v; }),
-      colorRow('Text (Pressed)', null, () => o.textPressed, (v) => { o.textPressed = v; }),
-      colorRow('Text Shadow', null, () => o.textShadow, (v) => { o.textShadow = v; }),
-      slider('Text Shadow Offset', () => o.textShadowPosition, (v) => { o.textShadowPosition = v; }, -3, 3, 0.25, title.startsWith('Open') ? -1.25 : 1, (v) => (v >= 0 ? '+' : '') + v.toFixed(2))];
+    const oc = (title, o) => { const pv = () => App.showPreview(title.startsWith('Close') ? 'paused' : null); return [el('b', { class: 'muted small', style: { marginTop: '4px' } }, title),
+      colorRow('Button', null, () => o.unpressed, (v) => { pv(); o.unpressed = v; }),
+      colorRow('Button (Pressed)', null, () => o.pressed, (v) => { pv(); o.pressed = v; }),
+      colorRow('Highlight', null, () => o.light, (v) => { pv(); o.light = v; }),
+      colorRow('Glow / Edge', null, () => o.glow, (v) => { pv(); o.glow = v; }),
+      colorAlphaRow('Shadow', null, () => o.shadow, (v) => { pv(); o.shadow = v; }),
+      colorRow('Text', null, () => o.textUnpressed, (v) => { pv(); o.textUnpressed = v; }),
+      colorRow('Text (Pressed)', null, () => o.textPressed, (v) => { pv(); o.textPressed = v; }),
+      colorRow('Text Shadow', null, () => o.textShadow, (v) => { pv(); o.textShadow = v; }),
+      slider('Text Shadow Offset', () => o.textShadowPosition, (v) => { pv(); o.textShadowPosition = v; }, -3, 3, 0.25, title.startsWith('Open') ? -1.25 : 1, (v) => (v >= 0 ? '+' : '') + v.toFixed(2))]; };
     return page(pageHead(sec('buttons'), 'The scroll arrows, the Open/Close button and the corner buttons on the bottom screen.'), Pages.paletteCard(),
       toggleCard('Arrow Buttons', 'arrows', 'The tabs on the left and right edges used to scroll.', () => f.arrowButtonColor, (v) => { f.arrowButtonColor = v; }, () => [
         colorRow('Main', null, () => c.arrowButton.main, (v) => { c.arrowButton.main = v; }),
@@ -183,14 +183,14 @@ const Pages = {
         colorRow('Arrow', null, () => c.arrow.unpressed, (v) => { c.arrow.unpressed = v; }),
         colorRow('Arrow (Pressed)', null, () => c.arrow.pressed, (v) => { c.arrow.pressed = v; }),
         colorRow('Outline', null, () => c.arrow.border, (v) => { c.arrow.border = v; })]),
-      toggleCard('Open & Close Buttons', 'buttons', '“Open” appears when software is selected; “Close” appears in folders.', () => f.openCloseColor, (v) => { f.openCloseColor = v; }, () => [
+      toggleCard('Open & Close Buttons', 'buttons', 'The bar along the bottom of the touch screen. “Close” takes up its left side while software is suspended.', () => f.openCloseColor, (v) => { f.openCloseColor = v; }, () => [
         ...oc('Open Button', c.open), el('div', { class: 'divider' }), ...oc('Close Button', c.close)]),
-      toggleCard('Top Corner Buttons', 'corner', 'The buttons in the top-left and top-right of the bottom screen.', () => f.topCornerColor, (v) => { f.topCornerColor = v; }, () => [
+      toggleCard('Camera Tabs', 'corner', 'The camera shortcut tabs in the lower corners of the top screen.', () => f.topCornerColor, (v) => { f.topCornerColor = v; }, () => [
         colorRow('Main', null, () => c.topCorner.main, (v) => { c.topCorner.main = v; }),
         colorRow('Light', null, () => c.topCorner.light, (v) => { c.topCorner.light = v; }),
         colorRow('Shadow', null, () => c.topCorner.shadow, (v) => { c.topCorner.shadow = v; }),
         colorRow('Icon / Text', null, () => c.topCorner.text, (v) => { c.topCorner.text = v; })]),
-      toggleCard('Bottom Corner Buttons', 'corner', 'The buttons in the bottom-left and bottom-right corners.', () => f.bottomCornerColor, (v) => { f.bottomCornerColor = v; }, () => [
+      toggleCard('Settings & Icon Size Buttons', 'corner', 'The HOME Menu settings and icon size buttons along the top of the touch screen.', () => f.bottomCornerColor, (v) => { f.bottomCornerColor = v; }, () => [
         colorRow('Main', null, () => c.bottomCorner.main, (v) => { c.bottomCorner.main = v; }),
         colorRow('Highlight', null, () => c.bottomCorner.highlight, (v) => { c.bottomCorner.highlight = v; }),
         colorRow('Border', null, () => c.bottomCorner.border, (v) => { c.bottomCorner.border = v; }),
@@ -202,7 +202,7 @@ const Pages = {
 
   folderView() {
     const f = F(), c = C();
-    return page(pageHead(sec('folderView'), 'How the bottom screen looks while a folder is open. Switch the preview to Folder to see it.'), Pages.paletteCard(),
+    return page(pageHead(sec('folderView'), 'How the bottom screen looks while a folder is open. The preview shows the Folder view while you\'re on this page.'), Pages.paletteCard(),
       toggleCard('Folder Background', 'square', 'The inner panel shown inside folders.', () => f.folderBackgroundColor, (v) => { f.folderBackgroundColor = v; }, () => [
         colorRow('Panel Color', null, () => c.folderBackground.main, (v) => { c.folderBackground.main = v; }),
         colorRow('Border', null, () => c.folderBackground.border, (v) => { c.folderBackground.border = v; }),
@@ -222,16 +222,16 @@ const Pages = {
 
   text() {
     const f = F(), c = C();
-    return page(pageHead(sec('text'), 'Text boxes on the top screen, like the selected software\'s title.'), Pages.paletteCard(),
-      card(cardHead('Software Title Box', 'text', 'The box showing the name of the selected software.'),
+    return page(pageHead(sec('text'), 'The software title box shown at the biggest icon size, and the demo message. The preview shows Big Icons while you\'re on this page.'), Pages.paletteCard(),
+      card(cardHead('Software Title Box', 'text', 'The name of the selected software, shown above the cursor when icons are at their biggest size.'),
         segmented([[0, 'Default'], [1, 'Custom Colors'], [2, 'Hidden']], f.gameTextDrawType, (v) => { f.gameTextDrawType = v; App.changed(true); }),
         f.gameTextDrawType === 1 ? el('div', {},
           colorRow('Box', null, () => c.gameText.main, (v) => { c.gameText.main = v; }),
           colorRow('Highlight', null, () => c.gameText.light, (v) => { c.gameText.light = v; }),
           colorAlphaRow('Shadow', null, () => c.gameText.shadow, (v) => { c.gameText.shadow = v; }),
           colorRow('Text', null, () => c.gameText.text, (v) => { c.gameText.text = v; })) : null,
-        f.gameTextDrawType === 2 ? el('div', { class: 'muted' }, 'The one-row title box is hidden, leaving your top wallpaper unobstructed.') : null),
-      toggleCard('Demo Text', 'text', 'Box used for demo and informational text on the top screen.', () => f.demoTextColor, (v) => { f.demoTextColor = v; }, () => [
+        f.gameTextDrawType === 2 ? el('div', { class: 'muted' }, 'The title box above big icons is hidden.') : null),
+      toggleCard('Demo Text', 'text', 'The message on the top screen that shows how many uses a demo has left.', () => f.demoTextColor, (v) => { f.demoTextColor = v; }, () => [
         colorRow('Box', null, () => c.demoText.main, (v) => { c.demoText.main = v; }),
         colorRow('Text', null, () => c.demoText.text, (v) => { c.demoText.text = v; })]));
   },
