@@ -245,3 +245,48 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 17px;
 @keyframes spin { to { transform: rotate(360deg); } }
 .progress { height: 6px; width: 220px; background: #2a2d5a; border-radius: 6px; overflow: hidden; }
 .progress div { height: 100%; background: var(--accent2); transition: width .15s; }
+
+/* ── 3DS console shell around the live preview (sizes in console pixels × --s) ── */
+.console.ds { --s: 1; --u: calc(var(--s) * 1px); display: flex; flex-direction: column; align-items: center; gap: 0; filter: drop-shadow(0 calc(var(--u) * 18) calc(var(--u) * 30) rgba(0,0,0,.55)); }
+.ds-shell { position: relative; width: calc(var(--u) * 480); box-sizing: border-box; display: flex; justify-content: center;
+  background: linear-gradient(180deg, #2b2f3d 0%, #1c1f2a 55%, #161923 100%); box-shadow: inset 0 calc(var(--u) * 1.5) 0 rgba(255,255,255,.12), inset 0 calc(var(--u) * -2) calc(var(--u) * 4) rgba(0,0,0,.35); }
+.ds-top { height: calc(var(--u) * 296); padding-top: calc(var(--u) * 22); border-radius: calc(var(--u) * 26) calc(var(--u) * 26) calc(var(--u) * 10) calc(var(--u) * 10); }
+.ds-bot { height: calc(var(--u) * 310); padding-top: calc(var(--u) * 16); border-radius: calc(var(--u) * 10) calc(var(--u) * 10) calc(var(--u) * 30) calc(var(--u) * 30);
+  background: linear-gradient(180deg, #232733 0%, #1d202b 40%, #171a24 100%); }
+.ds .bezel { padding: calc(var(--u) * 6); border-radius: calc(var(--u) * 7); background: #07080b; box-shadow: inset 0 0 0 calc(var(--u) * 1) rgba(255,255,255,.06), 0 0 0 calc(var(--u) * 1.2) rgba(0,0,0,.5); align-self: flex-start; }
+.ds .bezel canvas { border-radius: calc(var(--u) * 1.5); }
+.ds-hinge { position: relative; width: calc(var(--u) * 452); height: calc(var(--u) * 16); border-radius: calc(var(--u) * 8);
+  background: linear-gradient(180deg, #11131a 0%, #3a3f50 35%, #232634 60%, #0d0f15 100%); }
+.ds-led { position: absolute; right: calc(var(--u) * 26); top: calc(var(--u) * 5); width: calc(var(--u) * 6); height: calc(var(--u) * 6); border-radius: 50%; background: radial-gradient(circle at 35% 35%, #b9f3ff, #2aa8e8 60%, #10668e); box-shadow: 0 0 calc(var(--u) * 6) rgba(80,200,255,.8); }
+.ds-cam { position: absolute; top: calc(var(--u) * 7); left: 50%; width: calc(var(--u) * 8); height: calc(var(--u) * 8); margin-left: calc(var(--u) * -4); border-radius: 50%; background: radial-gradient(circle at 35% 35%, #50607c, #0a0c12 65%); box-shadow: 0 0 0 calc(var(--u) * 1.5) #10121a; }
+.ds-spk { position: absolute; top: calc(var(--u) * 74); display: grid; grid-template-columns: repeat(3, calc(var(--u) * 3.2)); gap: calc(var(--u) * 4.2) calc(var(--u) * 4); }
+.ds-spk.l { left: calc(var(--u) * 7); } .ds-spk.r { right: calc(var(--u) * 7); }
+.ds-spk .d { width: calc(var(--u) * 3.2); height: calc(var(--u) * 3.2); border-radius: 50%; background: #090a0f; box-shadow: inset 0 calc(var(--u) * .6) 0 rgba(0,0,0,.8), 0 calc(var(--u) * .5) 0 rgba(255,255,255,.08); }
+.ds-slider { position: absolute; right: calc(var(--u) * 9); top: calc(var(--u) * 18); width: calc(var(--u) * 5); height: calc(var(--u) * 44); border-radius: calc(var(--u) * 3); background: #0b0c12; box-shadow: inset 0 0 0 calc(var(--u) * .8) rgba(255,255,255,.07); }
+.ds-slider .k { position: absolute; left: calc(var(--u) * -1.5); top: calc(var(--u) * 22); width: calc(var(--u) * 8); height: calc(var(--u) * 10); border-radius: calc(var(--u) * 2); background: linear-gradient(90deg, #8b93a8, #c9cfdc 50%, #7b8296); }
+.ds-3d { position: absolute; right: calc(var(--u) * 6); top: calc(var(--u) * 66); font: 800 calc(var(--u) * 6) system-ui, sans-serif; color: rgba(255,255,255,.35); letter-spacing: calc(var(--u) * .4); }
+.ds-cpad { position: absolute; left: calc(var(--u) * 13); top: calc(var(--u) * 26); width: calc(var(--u) * 50); height: calc(var(--u) * 50); border-radius: 50%; background: #0c0e14; box-shadow: inset 0 calc(var(--u) * 1) calc(var(--u) * 3) rgba(0,0,0,.8); }
+.ds-cpad .n { position: absolute; inset: calc(var(--u) * 6); border-radius: 50%; background: radial-gradient(circle at 40% 35%, #5c6274, #2b2f3b 60%, #1b1e27); box-shadow: 0 calc(var(--u) * 2) calc(var(--u) * 3) rgba(0,0,0,.6), inset 0 0 0 calc(var(--u) * 1) rgba(255,255,255,.08); }
+.ds-dpad { position: absolute; left: calc(var(--u) * 16); top: calc(var(--u) * 112); width: calc(var(--u) * 44); height: calc(var(--u) * 44); }
+.ds-dpad .h, .ds-dpad .v { position: absolute; border-radius: calc(var(--u) * 2.5); background: linear-gradient(180deg, #3d4252, #22252f); box-shadow: 0 calc(var(--u) * 1.5) 0 #0b0d12, inset 0 calc(var(--u) * 1) 0 rgba(255,255,255,.12); }
+.ds-dpad .h { left: 0; right: 0; top: calc(var(--u) * 15); height: calc(var(--u) * 14); }
+.ds-dpad .v { top: 0; bottom: 0; left: calc(var(--u) * 15); width: calc(var(--u) * 14); }
+.ds-dpad .c { position: absolute; left: calc(var(--u) * 18); top: calc(var(--u) * 18); width: calc(var(--u) * 8); height: calc(var(--u) * 8); border-radius: 50%; background: radial-gradient(circle, #1a1d25, #2c3040); }
+.ds-abxy { position: absolute; right: calc(var(--u) * 10); top: calc(var(--u) * 30); width: calc(var(--u) * 56); height: calc(var(--u) * 56); }
+.ds-abxy .b { position: absolute; width: calc(var(--u) * 17); height: calc(var(--u) * 17); border-radius: 50%; display: grid; place-items: center; font: 800 calc(var(--u) * 8) system-ui, sans-serif; color: #c9cede;
+  background: radial-gradient(circle at 40% 30%, #4a4f60, #262a35 70%); box-shadow: 0 calc(var(--u) * 1.6) 0 #0b0d12, inset 0 calc(var(--u) * 1) 0 rgba(255,255,255,.14); }
+.ds-abxy .x { left: calc(var(--u) * 19.5); top: 0; } .ds-abxy .y { left: 0; top: calc(var(--u) * 19.5); } .ds-abxy .a { right: 0; top: calc(var(--u) * 19.5); } .ds-abxy .b2 { left: calc(var(--u) * 19.5); bottom: 0; }
+.ds-power { position: absolute; right: calc(var(--u) * 28); top: calc(var(--u) * 210); width: calc(var(--u) * 12); height: calc(var(--u) * 12); border-radius: 50%; background: radial-gradient(circle at 40% 35%, #3c4152, #1c1f29); box-shadow: inset 0 0 0 calc(var(--u) * 1.2) rgba(255,255,255,.08); }
+.ds-power::after { content: ''; position: absolute; inset: calc(var(--u) * 3.3); border-radius: 50%; border: calc(var(--u) * 1) solid rgba(255,255,255,.45); border-top-color: transparent; }
+.ds-row { position: absolute; bottom: calc(var(--u) * 12); left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: calc(var(--u) * 26); }
+.ds-sm { font: 700 calc(var(--u) * 6) system-ui, sans-serif; letter-spacing: calc(var(--u) * .6); color: rgba(255,255,255,.42); padding: calc(var(--u) * 3) calc(var(--u) * 8); border-radius: calc(var(--u) * 6); background: #11131a; box-shadow: inset 0 0 0 calc(var(--u) * .8) rgba(255,255,255,.08); }
+.ds-home { width: calc(var(--u) * 30); height: calc(var(--u) * 12); border-radius: calc(var(--u) * 6); background: linear-gradient(180deg, #3a3f50, #20232d); box-shadow: 0 calc(var(--u) * 1) 0 #0b0d12, inset 0 calc(var(--u) * .8) 0 rgba(255,255,255,.12); position: relative; }
+.ds-home::after { content: ''; position: absolute; left: 50%; top: 50%; width: calc(var(--u) * 7); height: calc(var(--u) * 5); margin: calc(var(--u) * -2) 0 0 calc(var(--u) * -3.5); background: #8fd7ff; clip-path: polygon(50% 0, 100% 45%, 85% 45%, 85% 100%, 15% 100%, 15% 45%, 0 45%); opacity: .85; }
+.ds-mic { position: absolute; right: calc(var(--u) * 104); bottom: calc(var(--u) * 16); width: calc(var(--u) * 3); height: calc(var(--u) * 3); border-radius: 50%; background: #07080b; }
+/* Small screens: keep the shell but drop the side controls */
+.console.ds.compact .ds-shell { width: calc(var(--u) * 440); }
+.console.ds.compact .ds-top { height: calc(var(--u) * 270); padding-top: calc(var(--u) * 12); border-radius: calc(var(--u) * 16) calc(var(--u) * 16) calc(var(--u) * 6) calc(var(--u) * 6); }
+.console.ds.compact .ds-bot { height: calc(var(--u) * 262); padding-top: calc(var(--u) * 8); border-radius: calc(var(--u) * 6) calc(var(--u) * 6) calc(var(--u) * 18) calc(var(--u) * 18); }
+.console.ds.compact .ds-hinge { width: calc(var(--u) * 420); height: calc(var(--u) * 8); }
+.console.ds.compact .ds-cpad, .console.ds.compact .ds-dpad, .console.ds.compact .ds-abxy, .console.ds.compact .ds-power, .console.ds.compact .ds-row,
+.console.ds.compact .ds-mic, .console.ds.compact .ds-spk, .console.ds.compact .ds-slider, .console.ds.compact .ds-3d, .console.ds.compact .ds-led, .console.ds.compact .ds-cam { display: none; }
