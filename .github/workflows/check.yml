@@ -1,0 +1,36 @@
+# Builds the Mac app and runs the engine tests on every push, so a broken build shows up
+# here before it reaches a release.
+name: Check build
+
+on:
+  push:
+    paths: ["macos/**", "windows/**", ".github/workflows/check.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  macos:
+    name: macOS app
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        working-directory: macos
+        run: chmod +x build_app.sh && ./build_app.sh
+
+  engine:
+    name: Engine tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: windows
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
