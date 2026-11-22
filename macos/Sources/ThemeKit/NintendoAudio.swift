@@ -98,7 +98,7 @@ public enum BCSTM {
         let lastBlockSize = nextMultiple(lastBlockSizeNoPad, 0x20)
         let seekEntries = max(1, (sampleCount + samplesPerBlock - 1) / samplesPerBlock)
 
-        let info1Size = 0x38 + 0xC
+        let info1Size = 0x38  // CSTM v2.0 stream info (no region info), same layout BrawlLib writes
         let info2Size = 4 + 8 * trackCount
         let info3Size = (4 + 8 * channelCount) + 0x14 * trackCount + 8 * channelCount + 0x2E * channelCount
         let infoSize = nextMultiple(8 + 24 + info1Size + info2Size + info3Size, 0x20)
@@ -112,7 +112,7 @@ public enum BCSTM {
 
         var w = ByteWriter(capacity: fileSize)
         // Header
-        w.ascii("CSTM"); w.u16(0xFEFF); w.u16(UInt16(headerSize)); w.u32(UInt32(0x0201) << 16); w.u32(fileSize)
+        w.ascii("CSTM"); w.u16(0xFEFF); w.u16(UInt16(headerSize)); w.u32(UInt32(0x02000000)); w.u32(fileSize)
         w.u16(3); w.u16(0)
         w.u16(0x4000); w.u16(0); w.u32(infoOffset); w.u32(infoSize)
         w.u16(0x4001); w.u16(0); w.u32(seekOffset); w.u32(seekSize)
@@ -143,7 +143,6 @@ public enum BCSTM {
         w.u32(4)                                  // bytes per seek entry
         w.u32(samplesPerBlock)                    // samples per seek entry
         w.u16(0x1F00); w.u16(0); w.u32(0x18)      // sample data reference (relative to DATA+8)
-        w.u16(0x0100); w.u16(0); w.u32(0); w.i32(-1) // region info (none)
         // Track reference table
         let channelTableSize = 4 + 8 * channelCount
         w.u32(trackCount)
