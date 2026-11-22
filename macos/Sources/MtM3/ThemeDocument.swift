@@ -115,9 +115,15 @@ final class ThemeDocument {
     var isDirty = false
     var statusMessage: String?
     var errorMessage: String?
-    var selection: EditorSection? = .info
+    var selection: EditorSection? = .info {
+        didSet { if let m = PreviewMode.forSection(selection) { previewMode = m } }
+    }
     var previewAnimating = true
-    var previewFolderMode = false
+    var previewMode: PreviewMode = .home
+    var previewFolderMode: Bool {
+        get { previewMode == .folder }
+        set { previewMode = newValue ? .folder : .home }
+    }
     var previewZoom: Double = 1.5
     var exportBusy = false
     var lastExportURL: URL?
