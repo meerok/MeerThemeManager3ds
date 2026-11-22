@@ -6,7 +6,7 @@ import UniformTypeIdentifiers
 extension ThemeDocument {
     /// Renders preview.png (412×480).
     func renderPreviewPNG() -> Data? {
-        let renderer = PreviewRenderer(theme: theme, images: previewImages, icon: iconImage, folderMode: false, time: 0, forExport: true)
+        let renderer = PreviewRenderer(theme: theme, images: previewImages, icon: iconImage, mode: .home, title: name, time: 0, forExport: true)
         let r = ImageRenderer(content: ExportPreviewView(renderer: renderer))
         r.scale = 1
         guard let cg = r.cgImage else { return nil }
