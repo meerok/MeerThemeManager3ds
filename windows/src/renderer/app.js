@@ -25,7 +25,10 @@ const App = {
   palette: [],
   bgm: { data: null, source: null, sourceName: null, sourcePath: null, preview: null, busy: false, progress: 0, settings: { rate: 32000, mono: false, loopStart: 0, edit: TK.AudioProcess.defaultEdit() } },
   sfx: new Array(8).fill(null), sfxNames: new Array(8).fill(null),
-  section: 'info', animate: true, folderMode: false, dirty: false, path: null,
+  section: 'info', animate: true, previewMode: 'home', dirty: false, path: null,
+  get folderMode() { return this.previewMode === 'folder'; },
+  set folderMode(v) { this.previewMode = v ? 'folder' : 'home'; },
+  showPreview(mode) { if (mode && this.previewMode !== mode) { this.previewMode = mode; this.renderPreviewControls(); } },
   undoStack: [], redoStack: [], lastSnap: null, lastPush: 0, paletteTimer: null,
 
   // ───── change tracking ─────
@@ -297,8 +300,8 @@ const App = {
   },
 
   // ───── rendering ─────
-  previewState() { return { theme: this.theme, images: { ...this.images, __defaultPattern: this.defaultPatternCanvas }, icon: this.iconCanvas, folderMode: this.folderMode, time: 0, forExport: false }; },
-  go(section) { this.section = section; Audio3DS.stop(); this.renderSidebar(); this.renderPage(); document.getElementById('editor').scrollTop = 0; },
+  previewState() { return { theme: this.theme, images: { ...this.images, __defaultPattern: this.defaultPatternCanvas }, icon: this.iconCanvas, mode: this.previewMode, title: this.name || 'My Theme', time: 0, forExport: false }; },
+  go(section) { this.section = section; Audio3DS.stop(); this.showPreview({ icons: 'home', buttons: 'home', top: 'home', bottom: 'home', folderView: 'folder', text: 'zoom' }[section]); this.renderSidebar(); this.renderPage(); document.getElementById('editor').scrollTop = 0; },
   renderAll() { this.renderSidebar(); this.renderPage(); this.updateTopbar(); this.renderPreviewControls(); },
   updateTopbar() {
     document.getElementById('docName').textContent = this.displayName();
@@ -342,17 +345,22 @@ const App = {
   renderPreviewControls() {
     const c = document.getElementById('previewControls'); c.innerHTML = '';
     c.append(
-      segmented([[false, 'Home'], [true, 'Folder']], this.folderMode, (v) => { this.folderMode = v; this.renderPreviewControls(); }),
+      segmented(Preview.MODES, this.previewMode, (v) => { this.previewMode = v; this.renderPreviewControls(); if (this.section === 'folderView') this.renderPage(); }),
       btn(this.animate ? 'Pause' : 'Play', this.animate ? 'pause' : 'play', () => { this.animate = !this.animate; this.renderPreviewControls(); }, 'small'),
       btn('Save preview.png', 'image', () => this.savePreview(), 'small ghost'),
     );
   },
   startPreviewLoop() {
-    const top = document.getElementById('topCanvas'), bot = document.getElementById('bottomCanvas'), pane = document.getElementById('preview');
+    const top = document.getElementById('topCanvas'), bot = document.getElementById('bottomCanvas'), pane = document.getElementById('preview'), shell = document.getElementById('console');
+    Preview.mountShell(shell);
     let frozen = 0;
     const frame = (ts) => {
       const dpr = window.devicePixelRatio || 1;
-      const scale = Math.max(0.6, Math.min(2.2, (pane.clientWidth - 70) / 430, (pane.clientHeight - 140) / 512));
+      const mob = window.innerWidth <= 860, padX = mob ? 16 : 40, padY = mob ? 64 : 120;
+      const fits = (c) => { const [w, h] = Preview.shellSize(c); return Math.min((pane.clientWidth - padX) / w, (pane.clientHeight - padY) / h); };
+      const compact = mob || fits(false) < 0.62, scale = Math.max(mob ? 0.2 : 0.45, Math.min(2.2, fits(compact)));
+      if (compact !== shell.classList.contains('compact')) shell.classList.toggle('compact', compact);
+      if (shell.style.getPropertyValue('--s') !== String(scale)) shell.style.setProperty('--s', String(scale));
       for (const [cv, w] of [[top, 412], [bot, 320]]) {
         const W = Math.round(w * scale * dpr), H = Math.round(240 * scale * dpr);
         if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; cv.style.width = W / dpr + 'px'; cv.style.height = H / dpr + 'px'; }
