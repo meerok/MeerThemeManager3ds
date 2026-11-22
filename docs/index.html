@@ -257,6 +257,51 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 17px;
 .progress { height: 6px; width: 220px; background: #2a2d5a; border-radius: 6px; overflow: hidden; }
 .progress div { height: 100%; background: var(--accent2); transition: width .15s; }
 
+/* ── 3DS console shell around the live preview (sizes in console pixels × --s) ── */
+.console.ds { --s: 1; --u: calc(var(--s) * 1px); display: flex; flex-direction: column; align-items: center; gap: 0; filter: drop-shadow(0 calc(var(--u) * 18) calc(var(--u) * 30) rgba(0,0,0,.55)); }
+.ds-shell { position: relative; width: calc(var(--u) * 480); box-sizing: border-box; display: flex; justify-content: center;
+  background: linear-gradient(180deg, #2b2f3d 0%, #1c1f2a 55%, #161923 100%); box-shadow: inset 0 calc(var(--u) * 1.5) 0 rgba(255,255,255,.12), inset 0 calc(var(--u) * -2) calc(var(--u) * 4) rgba(0,0,0,.35); }
+.ds-top { height: calc(var(--u) * 296); padding-top: calc(var(--u) * 22); border-radius: calc(var(--u) * 26) calc(var(--u) * 26) calc(var(--u) * 10) calc(var(--u) * 10); }
+.ds-bot { height: calc(var(--u) * 310); padding-top: calc(var(--u) * 16); border-radius: calc(var(--u) * 10) calc(var(--u) * 10) calc(var(--u) * 30) calc(var(--u) * 30);
+  background: linear-gradient(180deg, #232733 0%, #1d202b 40%, #171a24 100%); }
+.ds .bezel { padding: calc(var(--u) * 6); border-radius: calc(var(--u) * 7); background: #07080b; box-shadow: inset 0 0 0 calc(var(--u) * 1) rgba(255,255,255,.06), 0 0 0 calc(var(--u) * 1.2) rgba(0,0,0,.5); align-self: flex-start; }
+.ds .bezel canvas { border-radius: calc(var(--u) * 1.5); }
+.ds-hinge { position: relative; width: calc(var(--u) * 452); height: calc(var(--u) * 16); border-radius: calc(var(--u) * 8);
+  background: linear-gradient(180deg, #11131a 0%, #3a3f50 35%, #232634 60%, #0d0f15 100%); }
+.ds-led { position: absolute; right: calc(var(--u) * 26); top: calc(var(--u) * 5); width: calc(var(--u) * 6); height: calc(var(--u) * 6); border-radius: 50%; background: radial-gradient(circle at 35% 35%, #b9f3ff, #2aa8e8 60%, #10668e); box-shadow: 0 0 calc(var(--u) * 6) rgba(80,200,255,.8); }
+.ds-cam { position: absolute; top: calc(var(--u) * 7); left: 50%; width: calc(var(--u) * 8); height: calc(var(--u) * 8); margin-left: calc(var(--u) * -4); border-radius: 50%; background: radial-gradient(circle at 35% 35%, #50607c, #0a0c12 65%); box-shadow: 0 0 0 calc(var(--u) * 1.5) #10121a; }
+.ds-spk { position: absolute; top: calc(var(--u) * 74); display: grid; grid-template-columns: repeat(3, calc(var(--u) * 3.2)); gap: calc(var(--u) * 4.2) calc(var(--u) * 4); }
+.ds-spk.l { left: calc(var(--u) * 7); } .ds-spk.r { right: calc(var(--u) * 7); }
+.ds-spk .d { width: calc(var(--u) * 3.2); height: calc(var(--u) * 3.2); border-radius: 50%; background: #090a0f; box-shadow: inset 0 calc(var(--u) * .6) 0 rgba(0,0,0,.8), 0 calc(var(--u) * .5) 0 rgba(255,255,255,.08); }
+.ds-slider { position: absolute; right: calc(var(--u) * 9); top: calc(var(--u) * 18); width: calc(var(--u) * 5); height: calc(var(--u) * 44); border-radius: calc(var(--u) * 3); background: #0b0c12; box-shadow: inset 0 0 0 calc(var(--u) * .8) rgba(255,255,255,.07); }
+.ds-slider .k { position: absolute; left: calc(var(--u) * -1.5); top: calc(var(--u) * 22); width: calc(var(--u) * 8); height: calc(var(--u) * 10); border-radius: calc(var(--u) * 2); background: linear-gradient(90deg, #8b93a8, #c9cfdc 50%, #7b8296); }
+.ds-3d { position: absolute; right: calc(var(--u) * 6); top: calc(var(--u) * 66); font: 800 calc(var(--u) * 6) system-ui, sans-serif; color: rgba(255,255,255,.35); letter-spacing: calc(var(--u) * .4); }
+.ds-cpad { position: absolute; left: calc(var(--u) * 13); top: calc(var(--u) * 26); width: calc(var(--u) * 50); height: calc(var(--u) * 50); border-radius: 50%; background: #0c0e14; box-shadow: inset 0 calc(var(--u) * 1) calc(var(--u) * 3) rgba(0,0,0,.8); }
+.ds-cpad .n { position: absolute; inset: calc(var(--u) * 6); border-radius: 50%; background: radial-gradient(circle at 40% 35%, #5c6274, #2b2f3b 60%, #1b1e27); box-shadow: 0 calc(var(--u) * 2) calc(var(--u) * 3) rgba(0,0,0,.6), inset 0 0 0 calc(var(--u) * 1) rgba(255,255,255,.08); }
+.ds-dpad { position: absolute; left: calc(var(--u) * 16); top: calc(var(--u) * 112); width: calc(var(--u) * 44); height: calc(var(--u) * 44); }
+.ds-dpad .h, .ds-dpad .v { position: absolute; border-radius: calc(var(--u) * 2.5); background: linear-gradient(180deg, #3d4252, #22252f); box-shadow: 0 calc(var(--u) * 1.5) 0 #0b0d12, inset 0 calc(var(--u) * 1) 0 rgba(255,255,255,.12); }
+.ds-dpad .h { left: 0; right: 0; top: calc(var(--u) * 15); height: calc(var(--u) * 14); }
+.ds-dpad .v { top: 0; bottom: 0; left: calc(var(--u) * 15); width: calc(var(--u) * 14); }
+.ds-dpad .c { position: absolute; left: calc(var(--u) * 18); top: calc(var(--u) * 18); width: calc(var(--u) * 8); height: calc(var(--u) * 8); border-radius: 50%; background: radial-gradient(circle, #1a1d25, #2c3040); }
+.ds-abxy { position: absolute; right: calc(var(--u) * 10); top: calc(var(--u) * 30); width: calc(var(--u) * 56); height: calc(var(--u) * 56); }
+.ds-abxy .b { position: absolute; width: calc(var(--u) * 17); height: calc(var(--u) * 17); border-radius: 50%; display: grid; place-items: center; font: 800 calc(var(--u) * 8) system-ui, sans-serif; color: #c9cede;
+  background: radial-gradient(circle at 40% 30%, #4a4f60, #262a35 70%); box-shadow: 0 calc(var(--u) * 1.6) 0 #0b0d12, inset 0 calc(var(--u) * 1) 0 rgba(255,255,255,.14); }
+.ds-abxy .x { left: calc(var(--u) * 19.5); top: 0; } .ds-abxy .y { left: 0; top: calc(var(--u) * 19.5); } .ds-abxy .a { right: 0; top: calc(var(--u) * 19.5); } .ds-abxy .b2 { left: calc(var(--u) * 19.5); bottom: 0; }
+.ds-power { position: absolute; right: calc(var(--u) * 28); top: calc(var(--u) * 210); width: calc(var(--u) * 12); height: calc(var(--u) * 12); border-radius: 50%; background: radial-gradient(circle at 40% 35%, #3c4152, #1c1f29); box-shadow: inset 0 0 0 calc(var(--u) * 1.2) rgba(255,255,255,.08); }
+.ds-power::after { content: ''; position: absolute; inset: calc(var(--u) * 3.3); border-radius: 50%; border: calc(var(--u) * 1) solid rgba(255,255,255,.45); border-top-color: transparent; }
+.ds-row { position: absolute; bottom: calc(var(--u) * 12); left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: calc(var(--u) * 26); }
+.ds-sm { font: 700 calc(var(--u) * 6) system-ui, sans-serif; letter-spacing: calc(var(--u) * .6); color: rgba(255,255,255,.42); padding: calc(var(--u) * 3) calc(var(--u) * 8); border-radius: calc(var(--u) * 6); background: #11131a; box-shadow: inset 0 0 0 calc(var(--u) * .8) rgba(255,255,255,.08); }
+.ds-home { width: calc(var(--u) * 30); height: calc(var(--u) * 12); border-radius: calc(var(--u) * 6); background: linear-gradient(180deg, #3a3f50, #20232d); box-shadow: 0 calc(var(--u) * 1) 0 #0b0d12, inset 0 calc(var(--u) * .8) 0 rgba(255,255,255,.12); position: relative; }
+.ds-home::after { content: ''; position: absolute; left: 50%; top: 50%; width: calc(var(--u) * 7); height: calc(var(--u) * 5); margin: calc(var(--u) * -2) 0 0 calc(var(--u) * -3.5); background: #8fd7ff; clip-path: polygon(50% 0, 100% 45%, 85% 45%, 85% 100%, 15% 100%, 15% 45%, 0 45%); opacity: .85; }
+.ds-mic { position: absolute; right: calc(var(--u) * 104); bottom: calc(var(--u) * 16); width: calc(var(--u) * 3); height: calc(var(--u) * 3); border-radius: 50%; background: #07080b; }
+/* Small screens: keep the shell but drop the side controls */
+.console.ds.compact .ds-shell { width: calc(var(--u) * 440); }
+.console.ds.compact .ds-top { height: calc(var(--u) * 270); padding-top: calc(var(--u) * 12); border-radius: calc(var(--u) * 16) calc(var(--u) * 16) calc(var(--u) * 6) calc(var(--u) * 6); }
+.console.ds.compact .ds-bot { height: calc(var(--u) * 262); padding-top: calc(var(--u) * 8); border-radius: calc(var(--u) * 6) calc(var(--u) * 6) calc(var(--u) * 18) calc(var(--u) * 18); }
+.console.ds.compact .ds-hinge { width: calc(var(--u) * 420); height: calc(var(--u) * 8); }
+.console.ds.compact .ds-cpad, .console.ds.compact .ds-dpad, .console.ds.compact .ds-abxy, .console.ds.compact .ds-power, .console.ds.compact .ds-row,
+.console.ds.compact .ds-mic, .console.ds.compact .ds-spk, .console.ds.compact .ds-slider, .console.ds.compact .ds-3d, .console.ds.compact .ds-led, .console.ds.compact .ds-cam { display: none; }
+
 /* ───── Web additions ───── */
 html, body { height: 100%; }
 #app { height: 100vh; height: 100dvh; }
@@ -1928,213 +1973,477 @@ const Imaging = {
 
 </script>
 <script>
-// Draws an approximation of the 3DS HOME Menu with the theme's colors and pictures.
+// Draws the 3DS HOME Menu with the theme's colors and pictures, laid out like the real console.
 // Coordinates are console pixels: top screen 412×240 (incl. 3D margins), bottom 320×240.
+// Element positions follow the real HOME Menu (and Usagi's measurements of it).
 const Preview = (() => {
-  const DEF = TK.Theme.defaultColors();
-  const css = (c, a = 1) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
-  const cssA = (c) => `rgba(${c[0]},${c[1]},${c[2]},${(c[3] ?? 255) / 255})`;
-  const mix = (a, b, t) => [0, 1, 2].map((i) => Math.round(a[i] * (1 - t) + b[i] * t));
-
-  function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
-  function vgrad(ctx, top, bottom, y0, y1) { const g = ctx.createLinearGradient(0, y0, 0, y1); g.addColorStop(0, css(top)); g.addColorStop(1, css(bottom)); return g; }
-  function shadowed(ctx, color, blur, dy, fn) { ctx.save(); ctx.shadowColor = color; ctx.shadowBlur = blur; ctx.shadowOffsetY = dy; fn(); ctx.restore(); }
-  function text(ctx, s, x, y, size, color, align = 'center', weight = 700) {
-    ctx.font = `${weight} ${size}px "Segoe UI", "Noto Sans", system-ui, sans-serif`; ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = 'middle'; ctx.fillText(s, x, y);
+  // What the HOME Menu looks like when a color group is switched off (the console's own look).
+  const REAL = {
+    cursor: { shading: [51, 225, 154], main: [57, 237, 166], light: [170, 255, 222], glow: [57, 237, 166] },
+    folder: { shading: [70, 132, 150], main: [101, 168, 187], light: [146, 225, 238], shadow: [0, 0, 0] },
+    file: { shading: [208, 208, 208], main: [246, 246, 246], light: [252, 252, 252], shadow: [0, 0, 0, 70] },
+    arrowButton: { shading: [206, 206, 206], main: [240, 240, 240], light: [255, 255, 255], shadow: [0, 0, 0, 70] },
+    arrow: { border: [151, 181, 176], unpressed: [161, 192, 186], pressed: [177, 255, 240] },
+    open: { textShadowPosition: -1.25, pressed: [160, 156, 152], unpressed: [189, 185, 181], light: [230, 227, 223], shadow: [0, 0, 0, 60], glow: [240, 238, 234], textShadow: [239, 237, 233], textUnpressed: [61, 61, 61], textPressed: [40, 40, 40] },
+    close: { textShadowPosition: 1, pressed: [60, 58, 52], unpressed: [75, 72, 65], light: [88, 85, 78], shadow: [0, 0, 0, 60], glow: [134, 131, 124], textShadow: [90, 90, 90], textUnpressed: [239, 237, 233], textPressed: [200, 200, 200] },
+    gameText: { main: [250, 250, 250], light: [255, 255, 255], shadow: [0, 0, 0, 60], text: [61, 61, 61] },
+    bottomInner: { highlight: [127, 127, 127], main: [223, 220, 215], border: [234, 234, 234], glow: [63, 63, 63, 255] },
+    bottomOuter: { stripes: [208, 208, 216], main: [226, 226, 234], glow: [227, 228, 233] },
+    folderBackground: { highlight: [127, 127, 127], main: [223, 220, 215], border: [234, 234, 234], glow: [63, 63, 63, 255] },
+    folderArrow: { arrowShadowPosition: -1.25, shading: [43, 45, 42], main: [78, 75, 68], highlight: [140, 135, 129], shadow: [0, 0, 0, 90], glow: [120, 116, 110], arrowGlow: [0, 0, 0], arrowUnpressed: [255, 255, 255], arrowPressed: [187, 187, 187] },
+    bottomCorner: { border: [220, 220, 220], main: [233, 233, 234], highlight: [250, 250, 250], baseShadow: [0, 0, 0], iconBottom: [130, 156, 196], iconTop: [149, 176, 211], iconText: [149, 176, 211] },
+    topCorner: { main: [255, 255, 255], light: [255, 255, 255], shadow: [0, 0, 0], text: [61, 61, 61] },
+    demoText: { main: [60, 60, 60], text: [255, 255, 255] },
+  };
+  const FLAG = {
+    cursor: 'cursorColor', folder: 'folderColor', file: 'fileColor', arrowButton: 'arrowButtonColor', arrow: 'arrowColor',
+    open: 'openCloseColor', close: 'openCloseColor', bottomCorner: 'bottomCornerColor', topCorner: 'topCornerColor',
+    folderArrow: 'folderArrowColor', folderBackground: 'folderBackgroundColor', demoText: 'demoTextColor',
+  };
+  /** The colors actually used for a group: the theme's when its switch is on, otherwise the console's own. */
+  function col(s, key) {
+    const f = s.theme.flags, c = s.theme.colors;
+    if (key === 'gameText') return f.gameTextDrawType === 1 ? c.gameText : REAL.gameText;
+    if (key === 'bottomInner') return f.bottomDrawType === 1 && f.bottomInnerColor ? c.bottomInner : REAL.bottomInner;
+    if (key === 'bottomOuter') return f.bottomDrawType === 1 && f.bottomOuterColor ? c.bottomOuter : REAL.bottomOuter;
+    return f[FLAG[key]] ? c[key] : REAL[key];
   }
 
-  // Simple vector glyphs (no icon fonts needed)
-  const glyphs = {
-    sun(ctx, x, y, c) { ctx.strokeStyle = c; ctx.fillStyle = c; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.arc(x, y, 3.2, 0, 7); ctx.fill(); for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; ctx.beginPath(); ctx.moveTo(x + Math.cos(a) * 5, y + Math.sin(a) * 5); ctx.lineTo(x + Math.cos(a) * 7, y + Math.sin(a) * 7); ctx.stroke(); } },
-    pencil(ctx, x, y, c) { ctx.save(); ctx.translate(x, y); ctx.rotate(-Math.PI / 4); ctx.fillStyle = c; ctx.fillRect(-6, -2, 10, 4); ctx.beginPath(); ctx.moveTo(4, -2); ctx.lineTo(7.5, 0); ctx.lineTo(4, 2); ctx.fill(); ctx.restore(); },
-    grid(ctx, x, y, c) { ctx.fillStyle = c; for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) ctx.fillRect(x - 6 + i * 4.5, y - 6 + j * 4.5, 3.4, 3.4); },
-    brush(ctx, x, y, c) { ctx.save(); ctx.translate(x, y); ctx.rotate(Math.PI / 4); ctx.fillStyle = c; ctx.fillRect(-1.5, -8, 3, 9); rr(ctx, -3, 1, 6, 6, 2); ctx.fill(); ctx.restore(); },
-    back(ctx, x, y, c) { ctx.strokeStyle = c; ctx.lineWidth = 2.4; ctx.lineCap = 'round'; ctx.beginPath(); ctx.arc(x + 1, y + 1, 5, -Math.PI / 2, Math.PI / 2); ctx.moveTo(x + 1, y - 4); ctx.lineTo(x - 5, y - 4); ctx.moveTo(x - 2, y - 7); ctx.lineTo(x - 5, y - 4); ctx.lineTo(x - 2, y - 1); ctx.stroke(); },
-  };
+  const css = (c, a = 1) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+  const cssA = (c, k = 1) => `rgba(${c[0]},${c[1]},${c[2]},${((c[3] ?? 255) / 255) * k})`;
+  const mix = (a, b, t) => [0, 1, 2].map((i) => Math.round(a[i] * (1 - t) + b[i] * t));
+  const WHITE = [255, 255, 255], BLACK = [0, 0, 0];
+  const FONT = '"Nunito", "Segoe UI", "SF Pro Rounded", "Helvetica Neue", system-ui, sans-serif';
 
+  function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
+  function lin(ctx, x0, y0, x1, y1, stops) { const g = ctx.createLinearGradient(x0, y0, x1, y1); for (const [o, c] of stops) g.addColorStop(o, c); return g; }
+  function vgrad(ctx, top, bottom, y0, y1) { return lin(ctx, 0, y0, 0, y1, [[0, css(top)], [1, css(bottom)]]); }
+  function withShadow(ctx, color, blur, dx, dy, fn) { ctx.save(); ctx.shadowColor = color; ctx.shadowBlur = blur; ctx.shadowOffsetX = dx; ctx.shadowOffsetY = dy; fn(); ctx.restore(); }
+  function text(ctx, s, x, y, size, color, align = 'center', weight = 800) {
+    ctx.font = `${weight} ${size}px ${FONT}`; ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = 'middle'; ctx.fillText(s, x, y);
+  }
+  function outlinedText(ctx, s, x, y, size, fill, stroke, align = 'center', weight = 800) {
+    ctx.font = `${weight} ${size}px ${FONT}`; ctx.textAlign = align; ctx.textBaseline = 'middle';
+    ctx.lineJoin = 'round'; ctx.lineWidth = 2.5; ctx.strokeStyle = stroke; ctx.strokeText(s, x, y); ctx.fillStyle = fill; ctx.fillText(s, x, y);
+  }
+  function fitText(ctx, s, maxW, size, weight = 800) {
+    ctx.font = `${weight} ${size}px ${FONT}`;
+    if (ctx.measureText(s).width <= maxW) return s;
+    let t = s; while (t.length > 1 && ctx.measureText(t + '…').width > maxW) t = t.slice(0, -1);
+    return t + '…';
+  }
   function drawImageTiled(ctx, img, w, h, dx, dy) {
     const iw = img.width, ih = img.height;
-    for (let y = -ih + (dy % ih); y < h; y += ih) for (let x = -iw + (dx % iw); x < w; x += iw) ctx.drawImage(img, x, y);
+    for (let y = -ih + (((dy % ih) + ih) % ih); y < h; y += ih) for (let x = -iw + (((dx % iw) + iw) % iw); x < w; x += iw) ctx.drawImage(img, x, y);
+  }
+  const modeOf = (s) => s.mode || (s.folderMode ? 'folder' : 'home');
+
+  // ───────────── App artwork (original designs, drawn in a 38×38 box centered on 0,0) ─────────────
+  function appBg(ctx, top, bottom) { ctx.fillStyle = lin(ctx, 0, -19, 0, 19, [[0, css(top)], [1, css(bottom)]]); ctx.fillRect(-19, -19, 38, 38); ctx.fillStyle = 'rgba(255,255,255,.22)'; ctx.beginPath(); ctx.ellipse(0, -19, 30, 17, 0, 0, Math.PI); ctx.fill(); }
+  const ART = {
+    settings(ctx) {
+      appBg(ctx, [176, 182, 192], [104, 110, 122]);
+      ctx.fillStyle = '#fff'; ctx.beginPath();
+      for (let i = 0; i < 16; i++) { const a = (i / 16) * Math.PI * 2, r = i % 2 ? 9 : 12; ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r); }
+      ctx.closePath(); ctx.fill(); ctx.fillStyle = css([128, 134, 146]); ctx.beginPath(); ctx.arc(0, 0, 4.5, 0, 7); ctx.fill();
+    },
+    camera(ctx) {
+      appBg(ctx, [70, 74, 84], [30, 32, 38]);
+      ctx.fillStyle = '#e8e8ec'; rr(ctx, -13, -7, 26, 18, 4); ctx.fill(); rr(ctx, -5, -11, 10, 5, 2); ctx.fill();
+      ctx.fillStyle = '#2c2f36'; ctx.beginPath(); ctx.arc(0, 2, 6.5, 0, 7); ctx.fill();
+      ctx.fillStyle = '#5ab0ff'; ctx.beginPath(); ctx.arc(0, 2, 3.6, 0, 7); ctx.fill(); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(-1.2, 0.8, 1.1, 0, 7); ctx.fill();
+    },
+    music(ctx) {
+      appBg(ctx, [255, 172, 64], [232, 104, 24]);
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.ellipse(-6, 8, 4.6, 3.6, -0.4, 0, 7); ctx.fill(); ctx.beginPath(); ctx.ellipse(7, 5, 4.6, 3.6, -0.4, 0, 7); ctx.fill();
+      ctx.fillRect(-2.3, -11, 2.6, 19); ctx.fillRect(10.7, -14, 2.6, 19); ctx.beginPath(); ctx.moveTo(-2.3, -11); ctx.lineTo(13.3, -14); ctx.lineTo(13.3, -9); ctx.lineTo(-2.3, -6); ctx.fill();
+    },
+    browser(ctx) {
+      appBg(ctx, [86, 170, 255], [28, 98, 214]);
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(0, 0, 11, 0, 7); ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(0, 0, 5, 11, 0, 0, 7); ctx.moveTo(-11, 0); ctx.lineTo(11, 0); ctx.moveTo(-9, -6); ctx.lineTo(9, -6); ctx.moveTo(-9, 6); ctx.lineTo(9, 6); ctx.lineWidth = 1.4; ctx.stroke();
+    },
+    shop(ctx) {
+      appBg(ctx, [120, 214, 110], [40, 150, 64]);
+      ctx.fillStyle = '#fff'; rr(ctx, -11, -5, 22, 17, 3); ctx.fill();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.arc(0, -5, 6, Math.PI, 0); ctx.stroke();
+      ctx.fillStyle = css([40, 150, 64]); ctx.beginPath(); ctx.arc(0, 3.5, 3, 0, 7); ctx.fill();
+    },
+    mail(ctx) {
+      appBg(ctx, [90, 222, 214], [18, 150, 160]);
+      ctx.fillStyle = '#fff'; rr(ctx, -12, -8, 24, 17, 2.5); ctx.fill();
+      ctx.strokeStyle = css([18, 150, 160]); ctx.lineWidth = 1.8; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(-11, -7); ctx.lineTo(0, 2); ctx.lineTo(11, -7); ctx.stroke();
+    },
+    game(ctx) {
+      appBg(ctx, [196, 120, 255], [112, 48, 196]);
+      ctx.fillStyle = '#fff'; ctx.beginPath();
+      for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + (i * Math.PI) / 5, r = i % 2 ? 5.2 : 12; ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r + 1); }
+      ctx.closePath(); ctx.fill();
+    },
+    heart(ctx) {
+      appBg(ctx, [255, 140, 170], [222, 60, 110]);
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(0, 11); ctx.bezierCurveTo(-16, 0, -9, -14, 0, -5); ctx.bezierCurveTo(9, -14, 16, 0, 0, 11); ctx.fill();
+    },
+    download(ctx) {
+      appBg(ctx, [255, 214, 70], [236, 160, 20]);
+      ctx.fillStyle = '#fff'; ctx.fillRect(-3, -12, 6, 12); ctx.beginPath(); ctx.moveTo(-9, -1); ctx.lineTo(9, -1); ctx.lineTo(0, 9); ctx.fill(); rr(ctx, -12, 10, 24, 3, 1.5); ctx.fill();
+    },
+  };
+
+  function drawArt(ctx, s, kind) {
+    ctx.save(); rr(ctx, -19, -19, 38, 38, 3); ctx.clip();
+    if (kind === 'theme') {
+      ctx.fillStyle = '#4b6bf5'; ctx.fillRect(-19, -19, 38, 38);
+      if (s.icon) { ctx.imageSmoothingEnabled = true; ctx.drawImage(s.icon, -19, -19, 38, 38); }
+    } else (ART[kind] || ART.game)(ctx);
+    ctx.restore();
+    ctx.strokeStyle = 'rgba(0,0,0,.14)'; ctx.lineWidth = 0.75; rr(ctx, -18.6, -18.6, 37.2, 37.2, 3); ctx.stroke();
+  }
+
+  // ───────────── Grid pieces (all drawn centered on 0,0 at icon scale) ─────────────
+  /** The frame every app icon sits in (the "file" colors / picture). */
+  function drawFileFrame(ctx, s) {
+    const fc = col(s, 'file'), f = s.theme.flags, tex = f.fileTexture ? s.images.fileLarge : null;
+    withShadow(ctx, cssA(fc.shadow), 4, 0, 2, () => { rr(ctx, -24, -24, 48, 48, 8); ctx.fillStyle = css(fc.main); ctx.fill(); });
+    if (tex) {
+      // The picture holds the left half of the frame; the console mirrors it for the right half.
+      ctx.save(); rr(ctx, -24, -24, 48, 48, 8); ctx.clip(); ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(tex, 1, 1, 34, 69, -24, -24, 24, 48);
+      ctx.scale(-1, 1); ctx.drawImage(tex, 1, 1, 34, 69, -24, -24, 24, 48);
+      ctx.restore(); return;
+    }
+    ctx.save(); rr(ctx, -24, -24, 48, 48, 8); ctx.clip();
+    ctx.lineWidth = 3.2; ctx.strokeStyle = lin(ctx, 0, -24, 0, 24, [[0, css(fc.light)], [1, css(fc.shading)]]); rr(ctx, -24, -24, 48, 48, 8); ctx.stroke();
+    ctx.restore();
+    ctx.lineWidth = 0.8; ctx.strokeStyle = css(fc.shading, 0.9); rr(ctx, -23.6, -23.6, 47.2, 47.2, 7.8); ctx.stroke();
+  }
+  function drawAppTile(ctx, s, kind) { drawFileFrame(ctx, s); drawArt(ctx, s, kind); }
+
+  /** The game card slot with no card inserted (not affected by themes). */
+  function drawCardSlot(ctx) {
+    withShadow(ctx, 'rgba(0,0,0,.18)', 3, 0, 1.5, () => { rr(ctx, -24, -24, 48, 48, 8); ctx.fillStyle = '#e0e0de'; ctx.fill(); });
+    ctx.fillStyle = '#d3d3d1'; ctx.strokeStyle = '#b9b9b7'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(-12, -16); ctx.lineTo(9, -16); ctx.lineTo(14, -11); ctx.lineTo(14, 16); ctx.lineTo(-12, 16); ctx.quadraticCurveTo(-14, 16, -14, 14); ctx.lineTo(-14, -14); ctx.quadraticCurveTo(-14, -16, -12, -16); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#e0e0de'; rr(ctx, -9, -11, 18, 15, 2); ctx.fill();
+    for (let i = 0; i < 5; i++) { ctx.fillStyle = '#c4c4c2'; ctx.fillRect(-8 + i * 4, 9, 2.4, 5); }
+  }
+
+  const P_BACK = (() => { const p = new Path2D(); p.moveTo(-24, 0); p.lineTo(-24, -17); p.arcTo(-24, -20, -21, -20, 3); p.lineTo(-5, -20); p.lineTo(-3, -17); p.lineTo(21, -17); p.arcTo(24, -17, 24, -14, 3); p.lineTo(24, 0); p.closePath(); return p; })();
+  const P_FRONT_CLOSED = (() => { const p = new Path2D(); p.roundRect(-24, -14, 48, 36, 3); return p; })();
+  const P_FRONT_OPEN = (() => { const p = new Path2D(); p.moveTo(-21, -6); p.lineTo(21, -6); p.quadraticCurveTo(24, -6, 24, -3); p.lineTo(21, 19); p.quadraticCurveTo(21, 22, 18, 22); p.lineTo(-18, 22); p.quadraticCurveTo(-21, 22, -21, 19); p.lineTo(-24, -3); p.quadraticCurveTo(-24, -6, -21, -6); p.closePath(); return p; })();
+  const P_WHOLE = (() => { const p = new Path2D(); p.addPath(P_BACK); p.addPath(P_FRONT_CLOSED); return p; })();
+  /** A HOME Menu folder icon; open shows the front flap tipped forward. */
+  function drawFolderIcon(ctx, s, open) {
+    const fc = col(s, 'folder'), f = s.theme.flags, front = open ? P_FRONT_OPEN : P_FRONT_CLOSED;
+    const tex = f.folderTexture ? s.images[open ? 'folderOpen' : 'folderClosed'] : null;
+    if (tex) {
+      withShadow(ctx, css(fc.shadow, 0.45), 4, 0, 2, () => { ctx.fillStyle = css(fc.main); ctx.fill(P_WHOLE, 'nonzero'); });
+      ctx.save(); ctx.clip(P_WHOLE, 'nonzero'); ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(tex, 0, 0, open ? 82 : 74, 64, -24, -20, 48, 42); ctx.restore(); return;
+    }
+    // back panel with tab
+    withShadow(ctx, css(fc.shadow, 0.45), 4, 0, 2, () => { ctx.fillStyle = lin(ctx, 0, -20, 0, 0, [[0, css(mix(fc.main, WHITE, 0.25))], [1, css(fc.shading)]]); ctx.fill(P_BACK); });
+    // a file peeking out
+    ctx.save(); ctx.beginPath(); ctx.rect(-20, -23, 40, open ? 18 : 9); ctx.clip();
+    const fl = col(s, 'file'); rr(ctx, -15, -17, 30, 36, 4); ctx.fillStyle = css(fl.main); ctx.fill(); ctx.strokeStyle = css(fl.shading); ctx.lineWidth = 1; ctx.stroke(); ctx.restore();
+    // front flap
+    withShadow(ctx, css(fc.shadow, 0.3), 2, 0, open ? 2 : 1, () => { ctx.fillStyle = lin(ctx, 0, open ? -6 : -14, 0, 22, [[0, css(fc.light)], [1, css(fc.main)]]); ctx.fill(front); });
+    ctx.strokeStyle = css(fc.shading); ctx.lineWidth = 0.9; ctx.stroke(front);
+    ctx.strokeStyle = css(mix(fc.light, WHITE, 0.5), 0.8); ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(-20, open ? -4.5 : -12.5); ctx.lineTo(20, open ? -4.5 : -12.5); ctx.stroke();
+  }
+
+  /** The four-corner selection cursor, pulsing like the console's. */
+  function cursorPath(ctx) {
+    ctx.beginPath(); ctx.roundRect(-27, -27, 54, 54, 6); ctx.roundRect(-23, -23, 46, 46, 4);
+  }
+  function drawCursor(ctx, s) {
+    const cc = col(s, 'cursor'), t = s.forExport ? 0.5 : (Math.sin(s.time * Math.PI * 2) + 1) / 2;
+    const k = 1 + 0.05 * t;
+    ctx.save(); ctx.scale(k, k);
+    // keep only the corners: cut away a diamond through the middle of each side
+    ctx.beginPath(); ctx.rect(-40, -40, 80, 80); ctx.moveTo(0, -38.2); ctx.lineTo(-38.2, 0); ctx.lineTo(0, 38.2); ctx.lineTo(38.2, 0); ctx.closePath(); ctx.clip('evenodd');
+    withShadow(ctx, css(cc.glow, 0.95), 5 + 5 * t, 0, 0, () => { cursorPath(ctx); ctx.fillStyle = css(cc.glow, 0.35 + 0.6 * t); ctx.fill('evenodd'); });
+    cursorPath(ctx); ctx.fillStyle = lin(ctx, 0, -27, 0, 27, [[0, css(mix(cc.main, cc.light, 0.45))], [0.5, css(cc.main)], [1, css(cc.main)]]); ctx.fill('evenodd');
+    ctx.strokeStyle = css(cc.shading); ctx.lineWidth = 1; cursorPath(ctx); ctx.stroke();
+    ctx.strokeStyle = css(cc.light, 0.9); ctx.lineWidth = 0.8; rr(ctx, -25.6, -25.6, 51.2, 51.2, 5); ctx.stroke();
+    ctx.restore();
+  }
+
+  // ───────────── Bottom screen ─────────────
+  const COLS = [54, 107, 160, 213, 266, 320], ROWS = [70, 123, 176], FROWS = [112, 166];
+
+  function drawPanel(ctx, p, area) {
+    const [x, y, w, h] = area, R = 10, a = ((p.glow[3] ?? 255) / 255) / 25;
+    ctx.fillStyle = css(p.glow, a);
+    for (let dx = -2; dx <= 2; dx++) for (let dy = -2; dy <= 2; dy++) { rr(ctx, x + dx, y + dy + 2, w, h, R); ctx.fill(); }
+    rr(ctx, x, y, w, h, R); ctx.fillStyle = css(p.main); ctx.fill(); ctx.strokeStyle = css(p.border); ctx.lineWidth = 1; ctx.stroke();
+    ctx.strokeStyle = css(p.highlight); ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(x + R, y + h + 1); ctx.lineTo(x + w - 2 * R, y + h + 1); ctx.stroke();
+  }
+  function drawSlotMarks(ctx, p, rows, solid, skip) {
+    for (const cx of COLS) for (const cy of rows) {
+      if (skip(cx, cy)) continue;
+      if (solid) {
+        rr(ctx, cx - 8.5, cy - 8.5, 16, 16, 2); ctx.strokeStyle = css(p.border); ctx.lineWidth = 1; ctx.stroke();
+        ctx.strokeStyle = css(p.highlight); ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(cx - 6.5, cy - 8.5); ctx.lineTo(cx + 5.5, cy - 8.5); ctx.stroke();
+      } else { rr(ctx, cx - 8, cy - 8, 16, 16, 2); ctx.fillStyle = 'rgba(255,255,255,.2)'; ctx.fill(); }
+    }
+  }
+
+  function drawBottomBackground(ctx, s, mode, occupied) {
+    const f = s.theme.flags, c = s.theme.colors, images = s.images, folder = mode === 'folder';
+    const area = folder ? [12, 69, 320, 140] : [12, 39, 320, 170], rows = folder ? FROWS : ROWS;
+    const panel = folder ? col(s, 'folderBackground') : col(s, 'bottomInner');
+    if (f.bottomDrawType === 3 && images.bottom) {
+      let x = 0;
+      if (!s.forExport) {
+        const t = f.bottomFrameType, tm = s.time;
+        if (t === 0 || t === 3) x = (Math.sin(tm / (t === 0 ? 2 : 3)) + 1) / 2 * (1008 - 320);
+        else if (t === 2) x = (Math.floor(tm / 2.5) % 3) * 320;
+        else if (t === 4) x = [0, 1, 2, 1][Math.floor(tm / 2.5) % 4] * 320;
+      }
+      ctx.drawImage(images.bottom, -x, 0);
+      if (folder && f.folderBackgroundColor) { drawPanel(ctx, c.folderBackground, area); drawSlotMarks(ctx, c.folderBackground, rows, true, occupied); }
+      else if (mode !== 'zoom') drawSlotMarks(ctx, panel, rows, false, occupied);
+      return;
+    }
+    const o = col(s, 'bottomOuter');
+    ctx.fillStyle = css(o.main); ctx.fillRect(0, 0, 320, 240);
+    ctx.fillStyle = lin(ctx, 0, 0, 24, 0, [[0, css(o.glow)], [0.3, css(o.glow)], [1, css(o.main)]]); ctx.fillRect(0, 0, 24, 240);
+    ctx.fillStyle = lin(ctx, 296, 0, 320, 0, [[0, css(o.main)], [0.7, css(o.glow)], [1, css(o.glow)]]); ctx.fillRect(296, 0, 24, 240);
+    for (let i = 0; i < 7; i++) { ctx.strokeStyle = css(o.stripes, (1 - i / 7) / 2 + 0.15); ctx.lineWidth = 0.6; ctx.beginPath(); ctx.moveTo(0, 240 - 4 * i - 2.5); ctx.lineTo(320, 240 - 4 * i - 2.5); ctx.stroke(); }
+    drawPanel(ctx, panel, area);
+    if (mode !== 'zoom') drawSlotMarks(ctx, panel, rows, true, occupied);
+  }
+
+  /** HOME Menu settings (left) and icon-size buttons (right) along the top of the bottom screen. */
+  function drawCornerButtons(ctx, s) {
+    const bc = col(s, 'bottomCorner');
+    for (const x of [-8, 268]) {
+      withShadow(ctx, css(bc.baseShadow, 0.35), 4, 0, 1.5, () => { rr(ctx, x, -8, 59, 38, 8); ctx.fillStyle = css(bc.main); ctx.fill(); });
+      rr(ctx, x, -8, 59, 38, 8); ctx.fillStyle = lin(ctx, 0, -8, 0, 30, [[0, css(bc.highlight)], [0.55, css(bc.main)], [1, css(mix(bc.main, BLACK, 0.06))]]); ctx.fill();
+      ctx.strokeStyle = css(bc.border); ctx.lineWidth = 1; rr(ctx, x + 0.5, -7.5, 58, 37, 8); ctx.stroke();
+    }
+    const glyph = () => lin(ctx, 0, 4, 0, 27, [[0, css(bc.iconTop)], [1, css(bc.iconBottom)]]);
+    const well = (x, y, w, h) => { rr(ctx, x, y, w, h, 3); ctx.fillStyle = 'rgba(255,255,255,.08)'; ctx.fill(); ctx.strokeStyle = css(bc.iconText, 0.55); ctx.lineWidth = 0.75; ctx.stroke(); };
+    // left: HOME Menu settings (a house with a brush)
+    well(3, 3, 45, 25);
+    ctx.save(); ctx.translate(13, 5); ctx.fillStyle = glyph();
+    ctx.beginPath(); ctx.moveTo(1, 9); ctx.lineTo(10, 0); ctx.lineTo(18, 8); ctx.lineTo(15, 11); ctx.lineTo(15, 18); ctx.lineTo(5, 18); ctx.quadraticCurveTo(3, 18, 3, 16); ctx.lineTo(3, 9); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = css(bc.main); ctx.fillRect(7.5, 11, 5, 7);
+    ctx.fillStyle = glyph(); ctx.beginPath(); ctx.moveTo(16, 19); ctx.lineTo(22, 10); ctx.quadraticCurveTo(25, 9, 25, 12); ctx.lineTo(19, 21); ctx.quadraticCurveTo(16, 23, 16, 19); ctx.fill();
+    ctx.restore();
+    // right: larger / smaller icons
+    well(271, 4, 20, 23); well(297, 4, 20, 23);
+    ctx.fillStyle = glyph(); rr(ctx, 275, 10, 12, 12, 3); ctx.fill();
+    for (const [dx, dy] of [[0, 0], [7, 0], [0, 7], [7, 7]]) { rr(ctx, 301 + dx, 10 + dy, 5, 5, 1); ctx.fill(); }
+    ctx.strokeStyle = css(bc.border); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(293.5, 4); ctx.lineTo(293.5, 27); ctx.stroke();
+    ctx.strokeStyle = css(bc.highlight); ctx.beginPath(); ctx.moveTo(294.5, 4); ctx.lineTo(294.5, 27); ctx.stroke();
+  }
+
+  /** The row of built-in program shortcuts between the corner buttons (not affected by themes). */
+  function drawShortcuts(ctx) {
+    const items = [
+      [[255, 205, 60], (x) => { ctx.fillStyle = '#fff'; rr(ctx, x - 6, -6, 11, 13, 1.5); ctx.fill(); ctx.strokeStyle = '#d29a10'; ctx.lineWidth = 1; for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.moveTo(x - 4, -3 + i * 3.5); ctx.lineTo(x + 3, -3 + i * 3.5); ctx.stroke(); } }],
+      [[255, 150, 70], (x) => { ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x, 0, 7, 0, 7); ctx.fill(); ctx.fillStyle = '#ff8a3c'; ctx.beginPath(); ctx.arc(x - 2.5, -1.5, 1.2, 0, 7); ctx.arc(x + 2.5, -1.5, 1.2, 0, 7); ctx.fill(); ctx.strokeStyle = '#ff8a3c'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(x, 0.5, 3.6, 0.2, Math.PI - 0.2); ctx.stroke(); }],
+      [[110, 205, 90], (x) => { ctx.fillStyle = '#fff'; rr(ctx, x - 7, -6, 14, 10, 3); ctx.fill(); ctx.beginPath(); ctx.moveTo(x - 3, 3); ctx.lineTo(x - 5, 7.5); ctx.lineTo(x + 1, 3); ctx.fill(); ctx.fillStyle = '#4fb53a'; ctx.fillRect(x - 0.8, -4.5, 1.6, 4); ctx.fillRect(x - 0.8, 0.5, 1.6, 1.6); }],
+      [[80, 160, 250], (x) => { ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.arc(x, 0, 6.5, 0, 7); ctx.moveTo(x - 6.5, 0); ctx.lineTo(x + 6.5, 0); ctx.stroke(); ctx.beginPath(); ctx.ellipse(x, 0, 3, 6.5, 0, 0, 7); ctx.stroke(); }],
+      [[160, 120, 240], (x) => { ctx.fillStyle = '#fff'; rr(ctx, x - 7, -6, 10, 8, 2.5); ctx.fill(); rr(ctx, x - 2, -2, 10, 8, 2.5); ctx.fill(); ctx.fillStyle = '#a078f0'; ctx.fillRect(x, 1, 6, 1.2); }],
+    ];
+    items.forEach(([c, draw], i) => {
+      const x = 82 + i * 39;
+      ctx.save(); ctx.translate(0, 14);
+      withShadow(ctx, 'rgba(0,0,0,.25)', 2, 0, 1, () => { rr(ctx, x - 12, -10, 24, 20, 5); ctx.fillStyle = lin(ctx, 0, -10, 0, 10, [[0, css(mix(c, WHITE, 0.25))], [1, css(c)]]); ctx.fill(); });
+      ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 0.8; rr(ctx, x - 11.6, -9.6, 23.2, 19.2, 4.6); ctx.stroke();
+      draw(x); ctx.restore();
+    });
+  }
+
+  /** The half-round scroll button on the right edge. */
+  function drawArrowButton(ctx, s, pressed) {
+    const ab = col(s, 'arrowButton'), ar = col(s, 'arrow'), shift = pressed ? 2 : 0;
+    ctx.save(); ctx.translate(shift, 0);
+    withShadow(ctx, cssA(ab.shadow), 4, -1, 1, () => { ctx.beginPath(); ctx.ellipse(338, 123, 38, 39, 0, 0, 7); ctx.fillStyle = css(ab.main); ctx.fill(); });
+    ctx.save(); ctx.beginPath(); ctx.ellipse(338, 123, 38, 39, 0, 0, 7); ctx.clip();
+    ctx.fillStyle = lin(ctx, 0, 84, 0, 162, [[0, css(ab.main, 0)], [0.5, css(ab.main, 0)], [1, css(ab.shading, 0.95)]]); ctx.fillRect(296, 80, 30, 86);
+    ctx.fillStyle = lin(ctx, 300, 0, 312, 0, [[0, css(ab.light, 0.95)], [1, css(ab.light, 0)]]); ctx.fillRect(296, 80, 30, 86);
+    ctx.restore();
+    ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.ellipse(338, 123, 37.5, 38.5, 0, Math.PI * 0.62, Math.PI * 1.38); ctx.stroke();
+    ctx.translate(303, 123);
+    ctx.beginPath(); ctx.moveTo(1, 2); ctx.lineTo(7, 2); ctx.lineTo(7, 7); ctx.lineTo(14, 0); ctx.lineTo(7, -7); ctx.lineTo(7, -2); ctx.lineTo(1, -2); ctx.quadraticCurveTo(0, -2, 0, 0); ctx.quadraticCurveTo(0, 2, 1, 2); ctx.closePath();
+    ctx.fillStyle = css(pressed ? ar.pressed : ar.unpressed); ctx.fill(); ctx.strokeStyle = css(ar.border); ctx.lineWidth = 1; ctx.stroke();
+    ctx.restore();
+  }
+
+  /** The Open bar across the bottom (or Close + Resume when software is suspended). */
+  function drawButtonBar(ctx, s, mode, pressed) {
+    const title = s.title || 'My Theme';
+    const one = (o, x, w, label, roundLeft, roundRight, isPressed) => {
+      const path = () => { ctx.beginPath(); ctx.roundRect(x, 215, w, 50, [roundLeft ? 10 : 0, roundRight ? 10 : 0, 0, 0]); };
+      withShadow(ctx, cssA(o.shadow), 5, 0, -1, () => { path(); ctx.fillStyle = css(o.unpressed); ctx.fill(); });
+      path(); ctx.fillStyle = lin(ctx, 0, 215, 0, 240, [[0, css(o.light)], [1, css(isPressed ? o.pressed : o.unpressed)]]); ctx.fill();
+      ctx.save(); path(); ctx.clip();
+      ctx.strokeStyle = css(o.glow); ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(x + (roundLeft ? 8 : 0), 216); ctx.lineTo(x + w - (roundRight ? 8 : 0), 216); ctx.stroke();
+      ctx.restore();
+      ctx.strokeStyle = css(mix(o.unpressed, BLACK, 0.12)); ctx.lineWidth = 0.8; path(); ctx.stroke();
+      const t = fitText(ctx, label, w - 16, 13), dy = Math.max(-3, Math.min(3, o.textShadowPosition)) * 1.2, ty = 227.5 + (isPressed ? 1 : 0);
+      text(ctx, t, x + w / 2, ty - dy, 13, css(o.textShadow)); text(ctx, t, x + w / 2, ty, 13, css(isPressed ? o.textPressed : o.textUnpressed));
+    };
+    if (mode === 'paused') {
+      one(col(s, 'close'), 0, 106, 'Close', true, false, pressed);
+      one(col(s, 'open'), 106, 214, title, false, true, false);
+      ctx.strokeStyle = 'rgba(0,0,0,.25)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(106, 217); ctx.lineTo(106, 240); ctx.stroke();
+    } else one(col(s, 'open'), 0, 320, title, true, true, pressed);
+  }
+
+  /** The button that leaves a folder, and the folder's name. */
+  function drawFolderHeader(ctx, s, pressed) {
+    const fa = col(s, 'folderArrow');
+    withShadow(ctx, cssA(fa.shadow), 4, 0, 2, () => { rr(ctx, 27, 47, 66, 30, 8); ctx.fillStyle = css(fa.main); ctx.fill(); });
+    rr(ctx, 27, 47, 66, 30, 8); ctx.fillStyle = lin(ctx, 0, 47, 0, 77, [[0, css(fa.highlight)], [0.3, css(fa.main)], [1, css(pressed ? mix(fa.main, BLACK, 0.2) : fa.main)]]); ctx.fill();
+    ctx.strokeStyle = css(fa.shading); ctx.lineWidth = 1; rr(ctx, 27.5, 47.5, 65, 29, 8); ctx.stroke();
+    ctx.strokeStyle = css(fa.glow); ctx.lineWidth = 0.9; ctx.beginPath(); ctx.moveTo(35, 49); ctx.lineTo(85, 49); ctx.stroke();
+    const arrow = () => { ctx.beginPath(); ctx.moveTo(7, 4); ctx.lineTo(10, 4); ctx.arc(10, 10, 6, -Math.PI / 2, Math.PI / 2); ctx.lineTo(7, 16); ctx.lineTo(7, 13); ctx.lineTo(10, 13); ctx.arc(10, 10, 3, Math.PI / 2, -Math.PI / 2, true); ctx.lineTo(7, 7); ctx.lineTo(7, 10); ctx.lineTo(0, 5.5); ctx.lineTo(7, 0); ctx.closePath(); };
+    const dy = Math.max(-3, Math.min(3, fa.arrowShadowPosition)) * 1.2;
+    ctx.save(); ctx.translate(51, 52 + (pressed ? 1 : 0));
+    ctx.save(); ctx.translate(0, -dy); arrow(); ctx.fillStyle = css(fa.arrowGlow, 0.8); ctx.fill(); ctx.restore();
+    arrow(); ctx.fillStyle = css(pressed ? fa.arrowPressed : fa.arrowUnpressed); ctx.fill();
+    ctx.restore();
+    outlinedText(ctx, 'My Folder', 104, 62, 13, '#3d3d3d', 'rgba(255,255,255,.95)', 'left');
+  }
+
+  const HOME_GRID = [
+    [0, 0, 'card'], [1, 0, 'theme'], [2, 0, 'folder'], [3, 0, 'camera'], [4, 0, 'music'],
+    [0, 1, 'settings'], [1, 1, 'browser'], [2, 1, 'shop'], [3, 1, 'mail'],
+    [0, 2, 'game'], [1, 2, 'download'],
+  ];
+  const FOLDER_GRID = [[0, 0, 'theme'], [1, 0, 'heart'], [2, 0, 'game'], [0, 1, 'music']];
+
+  function drawBottom(ctx, s) {
+    const mode = modeOf(s), time = s.time, ex = s.forExport;
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 0, 320, 240); ctx.clip();
+    const grid = mode === 'folder' ? FOLDER_GRID : HOME_GRID, rows = mode === 'folder' ? FROWS : ROWS;
+    const taken = new Set(grid.map(([c, r]) => COLS[c] + ',' + rows[r]));
+    drawBottomBackground(ctx, s, mode, (x, y) => taken.has(x + ',' + y));
+
+    const placeAt = (x, y, k, fn) => { ctx.save(); ctx.translate(x, y); ctx.scale(k, k); fn(); ctx.restore(); };
+    const drawItem = (kind) => (kind === 'card' ? drawCardSlot(ctx) : kind === 'folder' ? drawFolderIcon(ctx, s, false) : drawAppTile(ctx, s, kind));
+    if (mode === 'zoom') {
+      // Largest icon size: one big row, with the selected title shown above the cursor.
+      const k = 1.72, y = 132, xs = [-12, 160, 332], kinds = ['card', 'theme', 'folder'];
+      xs.forEach((x, i) => placeAt(x, y, k, () => drawItem(kinds[i])));
+      placeAt(160, y, k, () => drawCursor(ctx, s));
+      const gt = s.theme.flags.gameTextDrawType;
+      if (gt !== 2) {
+        const g = col(s, 'gameText'), label = fitText(ctx, s.title || 'My Theme', 200, 12), w = Math.max(90, ctx.measureText(label).width + 28);
+        withShadow(ctx, cssA(g.shadow), 4, 0, 2, () => { rr(ctx, 160 - w / 2, 50, w, 24, 7); ctx.fillStyle = css(g.main); ctx.fill(); });
+        ctx.beginPath(); ctx.moveTo(154, 74); ctx.lineTo(160, 80); ctx.lineTo(166, 74); ctx.fillStyle = css(g.main); ctx.fill();
+        rr(ctx, 160 - w / 2, 50, w, 24, 7); ctx.fillStyle = lin(ctx, 0, 50, 0, 74, [[0, css(g.light)], [0.6, css(g.main, 0)]]); ctx.fill();
+        text(ctx, label, 160, 62.5, 12, css(g.text));
+      }
+    } else {
+      for (const [c, r, kind] of grid) placeAt(COLS[c], rows[r], 1, () => drawItem(kind));
+      placeAt(COLS[1], rows[0], 1, () => drawCursor(ctx, s));
+    }
+    if (mode === 'folder') drawFolderHeader(ctx, s, !ex && Math.floor(time / 1.7) % 4 === 3);
+    drawCornerButtons(ctx, s);
+    drawShortcuts(ctx);
+    if (mode !== 'folder') drawArrowButton(ctx, s, !ex && Math.floor(time / 1.5) % 4 === 3);
+    drawButtonBar(ctx, s, mode, !ex && Math.floor(time / 2) % 5 === 4);
+    ctx.restore();
+  }
+
+  // ───────────── Top screen ─────────────
+  function drawStatusBar(ctx, s) {
+    const now = s.clock || new Date(), blink = s.forExport || Math.floor(s.time * 2) % 2 === 0;
+    const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()];
+    // signal + "Internet"
+    ctx.save(); ctx.translate(8, 3);
+    const bars = [[3, 7, 3, 10], [7, 12, 5, 5], [12, 7, 5, 10], [17, 2, 5, 15]];
+    ctx.fillStyle = '#27b7eb'; ctx.strokeStyle = '#fff'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(4, 4, 2.5, 0, 7); ctx.fill(); ctx.stroke();
+    for (const [x, y, w, h] of bars.slice(0, 1)) { ctx.fillRect(x, y, w, h); ctx.strokeRect(x, y, w, h); }
+    for (const [x, y, w, h] of bars.slice(1)) { ctx.fillRect(x, y, w, h); ctx.strokeRect(x, y, w, h); }
+    ctx.restore();
+    rr(ctx, 33, 3, 104, 16, 2.5); ctx.fillStyle = lin(ctx, 0, 3, 0, 19, [[0, '#31aadf'], [0.5, '#59c3f3'], [0.5, '#31aadf'], [1, '#59c3f3']]); ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 0.8; ctx.stroke();
+    text(ctx, 'Internet', 85, 11.5, 11, '#fff', 'center', 700);
+    // coins
+    ctx.beginPath(); ctx.arc(155, 11, 7, 0, 7); ctx.fillStyle = '#d5c500'; ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 0.8; ctx.stroke();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.strokeRect(153, 8, 4, 6); ctx.beginPath(); ctx.moveTo(153, 11); ctx.lineTo(157, 11); ctx.stroke();
+    outlinedText(ctx, '300', 166, 11.5, 12, '#3d3d3d', '#fff', 'left');
+    // date, time, battery
+    const hh = String(now.getHours()), mm = String(now.getMinutes()).padStart(2, '0');
+    outlinedText(ctx, `${now.getMonth() + 1}/${now.getDate()} (${day})`, 300, 11.5, 12, '#3d3d3d', '#fff', 'right');
+    outlinedText(ctx, hh, 340, 11.5, 12, '#3d3d3d', '#fff', 'right');
+    if (blink) outlinedText(ctx, ':', 343, 10.5, 12, '#3d3d3d', '#fff', 'center');
+    outlinedText(ctx, mm, 346, 11.5, 12, '#3d3d3d', '#fff', 'left');
+    ctx.fillStyle = '#000'; ctx.strokeStyle = '#fff'; ctx.lineWidth = 1;
+    rr(ctx, 376, 3, 27, 16, 2); ctx.fill(); ctx.stroke(); ctx.fillRect(373.5, 8, 2.5, 6); ctx.strokeRect(373.5, 8, 2.5, 6);
+    ctx.fillStyle = lin(ctx, 0, 6, 0, 16, [[0, '#7fe08a'], [0.3, '#fff'], [0.45, '#3fb54d'], [1, '#2a9a3a']]); ctx.fillRect(380, 6, 20, 10);
+  }
+
+  /** The camera shortcut tabs in the lower corners of the top screen. */
+  function drawCameraTabs(ctx, s) {
+    const tc = col(s, 'topCorner'), fg = css(tc.text);
+    ctx.save(); ctx.translate(0, 217);
+    const shape = () => {
+      ctx.beginPath(); ctx.moveTo(0, 23); ctx.lineTo(0, 0); ctx.lineTo(76, 0); ctx.quadraticCurveTo(88, 0, 90, 10); ctx.lineTo(92, 23); ctx.closePath();
+      ctx.moveTo(320, 23); ctx.lineTo(323, 10); ctx.quadraticCurveTo(326, 0, 334, 0); ctx.lineTo(412, 0); ctx.lineTo(412, 23); ctx.closePath();
+    };
+    withShadow(ctx, css(tc.shadow, 0.5), 3, 0, 0, () => { shape(); ctx.fillStyle = css(tc.main, 0.78); ctx.fill(); });
+    shape(); ctx.fillStyle = lin(ctx, 0, 0, 0, 12, [[0, css(tc.light, 0.55)], [1, css(tc.light, 0)]]); ctx.fill();
+    // left: camera + Y
+    ctx.strokeStyle = fg; ctx.fillStyle = fg; ctx.lineWidth = 1.8;
+    ctx.save(); ctx.translate(20, 5);
+    ctx.beginPath(); ctx.moveTo(9, 12); ctx.lineTo(2, 12); ctx.quadraticCurveTo(0, 12, 0, 10); ctx.lineTo(0, 2); ctx.quadraticCurveTo(0, 0, 2, 0); ctx.lineTo(15, 0); ctx.quadraticCurveTo(17, 0, 17, 2); ctx.stroke();
+    rr(ctx, 11, 6, 12, 8, 1.5); ctx.fill(); rr(ctx, 14, 4, 6, 4, 2); ctx.fill();
+    ctx.fillStyle = css(tc.main); ctx.beginPath(); ctx.arc(17, 10, 2.3, 0, 7); ctx.fill(); ctx.restore();
+    ctx.beginPath(); ctx.arc(60, 11, 7.5, 0, 7); ctx.lineWidth = 1.6; ctx.stroke(); text(ctx, 'Y', 60, 11.5, 10, fg, 'center', 800);
+    // right: camera + L + R
+    ctx.save(); ctx.translate(318, 5); ctx.fillStyle = fg; rr(ctx, 0, 2, 16, 12, 1.5); ctx.fill(); rr(ctx, 4, 0, 8, 4, 2); ctx.fill();
+    ctx.fillStyle = css(tc.main); ctx.beginPath(); ctx.arc(8, 8, 3, 0, 7); ctx.fill(); ctx.restore();
+    const lr = (x, flip, ch) => { ctx.save(); ctx.translate(x, 5); ctx.beginPath(); if (!flip) { ctx.moveTo(0, 13); ctx.quadraticCurveTo(2, 0, 3, 0); ctx.lineTo(16, 0); ctx.quadraticCurveTo(15, 2, 13, 13); } else { ctx.moveTo(16, 13); ctx.quadraticCurveTo(14, 0, 13, 0); ctx.lineTo(0, 0); ctx.quadraticCurveTo(1, 2, 3, 13); } ctx.closePath(); ctx.lineWidth = 1.4; ctx.strokeStyle = fg; ctx.stroke(); text(ctx, ch, 8, 7, 9.5, fg, 'center', 800); ctx.restore(); };
+    lr(338, false, 'L'); text(ctx, '+', 367, 11.5, 11, fg, 'center', 800); lr(372, true, 'R');
+    ctx.restore();
   }
 
   function drawTop(ctx, s) {
-    const { theme, images, time, forExport, folderMode } = s, f = theme.flags, c = theme.colors;
+    const { theme, images, time, forExport } = s, f = theme.flags, c = theme.colors, mode = modeOf(s);
     ctx.save(); ctx.beginPath(); ctx.rect(0, 0, 412, 240); ctx.clip();
     const drawDefault = () => {
-      ctx.fillStyle = vgrad(ctx, [232, 232, 238], [196, 196, 210], 0, 240); ctx.fillRect(0, 0, 412, 240);
-      for (let i = 0; i < 9; i++) {
-        const size = 18 + (i * 7) % 26, x = ((i * 53 + (forExport ? 0 : time * (6 + i))) % 460) - 30, y = 30 + (i * 37) % 180;
-        ctx.fillStyle = 'rgba(255,255,255,.35)'; rr(ctx, x, y, size, size, 3); ctx.fill();
-      }
+      ctx.fillStyle = lin(ctx, 0, 0, 0, 240, [[0, '#f4f4f6'], [1, '#d9d9e0']]); ctx.fillRect(0, 0, 412, 240);
+      ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 1;
+      const off = forExport ? 0 : (time * 6) % 24;
+      for (let x = -240 + off; x < 412; x += 24) { ctx.beginPath(); ctx.moveTo(x, 240); ctx.lineTo(x + 240, 0); ctx.stroke(); }
     };
-    if (f.topDrawType === 0) drawDefault();
-    else if (f.topDrawType === 1 || f.topDrawType === 2) {
+    if (f.topDrawType === 1 || f.topDrawType === 2) {
       const tb = c.topBackground;
       ctx.fillStyle = css(tb.main); ctx.fillRect(0, 0, 412, 240);
-      const glow = [tb.gradientColor, tb.gradientColor, tb.gradientColor], k = tb.gradient / 255;
-      const g = ctx.createLinearGradient(0, 0, 0, 240); g.addColorStop(0, css(glow, k * 0.85)); g.addColorStop(1, css(glow, 0)); ctx.fillStyle = g; ctx.fillRect(0, 0, 412, 240);
+      const g = [tb.gradientColor, tb.gradientColor, tb.gradientColor], k = tb.gradient / 255;
+      ctx.fillStyle = lin(ctx, 0, 0, 0, 240, [[0, css(g, k * 0.85)], [1, css(g, 0)]]); ctx.fillRect(0, 0, 412, 240);
       if (f.topDrawType === 2) {
-        const off = forExport ? 0 : (time * 8) % 64;
-        const p = images.topPattern || images.__defaultPattern;
+        const off = forExport ? 0 : (time * 8) % 64, p = images.topPattern || images.__defaultPattern;
         if (p) { ctx.globalAlpha = tb.textureOpacity / 255; drawImageTiled(ctx, p, 412, 240, off, off); }
         if (images.topAltPattern) { ctx.globalAlpha = tb.alternateOpacity / 255; drawImageTiled(ctx, images.topAltPattern, 412, 240, -off, off * 0.5); }
         ctx.globalAlpha = 1;
       }
     } else if (f.topDrawType === 3 && images.top) {
       let x = 0;
-      if (f.topFrameType !== 1 && !forExport) { const speed = f.topFrameType === 0 ? 2 : 3.5; x = (Math.sin(time / speed) + 1) / 2 * (1008 - 412); }
+      if (f.topFrameType !== 1 && !forExport) { const speed = f.topFrameType === 0 ? 2 : 3; x = (Math.sin(time / speed) + 1) / 2 * (1008 - 412); }
       ctx.drawImage(images.top, -x, 0);
     } else drawDefault();
 
-    // status bar
-    shadowed(ctx, 'rgba(0,0,0,.5)', 2, 1, () => {
-      text(ctx, '12:30', 18, 11, 11, '#fff', 'left'); text(ctx, 'Sat 11/21', 54, 11, 10, '#fff', 'left', 600);
-      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.2; rr(ctx, 376, 5, 20, 10, 2); ctx.stroke(); ctx.fillStyle = '#fff'; rr(ctx, 378, 7, 16, 6, 1); ctx.fill(); ctx.fillRect(396.5, 8, 2, 4);
-      ctx.beginPath(); for (let i = 0; i < 3; i++) { ctx.moveTo(356 + i * 4, 15); ctx.lineTo(356 + i * 4, 15 - (i + 1) * 3); } ctx.lineWidth = 2.4; ctx.stroke();
-    });
-    if (folderMode) {
-      const bob = forExport ? 0 : Math.sin(time * 1.6) * 4;
-      drawFolder(ctx, s, 206 - 70, 70 + bob, 140, 104, true);
-    } else if (f.gameTextDrawType !== 2) {
-      const g = f.gameTextDrawType === 1 ? c.gameText : DEF.gameText;
-      shadowed(ctx, cssA(g.shadow), 6, 2, () => { ctx.fillStyle = vgrad(ctx, g.light, g.main, 196, 228); rr(ctx, 86, 196, 240, 32, 9); ctx.fill(); });
-      ctx.strokeStyle = css(g.light); ctx.lineWidth = 1; rr(ctx, 86.5, 196.5, 239, 31, 9); ctx.stroke();
-      text(ctx, 'Meer Theme Manager', 206, 212, 13, css(g.text));
+    if (mode === 'folder') {
+      // The selected folder floats in the middle of the top screen.
+      const bob = forExport ? 0 : Math.sin(time * 1.6) * 4, tilt = forExport ? 0 : Math.sin(time * 0.8) * 0.06;
+      ctx.save(); ctx.translate(206, 118 + bob); ctx.rotate(tilt); ctx.scale(2.7, 2.7); drawFolderIcon(ctx, s, true); ctx.restore();
     }
-    if (f.demoTextColor && !folderMode) { const d = c.demoText; ctx.fillStyle = css(d.main, 0.95); rr(ctx, 120, 26, 172, 22, 6); ctx.fill(); text(ctx, 'Demo text', 206, 37, 11, css(d.text), 'center', 600); }
-    if (!forExport) { ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillRect(0, 0, 6, 240); ctx.fillRect(406, 0, 6, 240); }
-    ctx.restore();
-  }
-
-  function folderPath(ctx, x, y, w, h) {
-    const tabW = w * 0.42, tabH = h * 0.16;
-    ctx.beginPath();
-    ctx.moveTo(x + 4, y + tabH); ctx.lineTo(x + 4, y + 3); ctx.quadraticCurveTo(x + 4, y, x + 8, y);
-    ctx.lineTo(x + tabW - 4, y); ctx.lineTo(x + tabW + 4, y + tabH); ctx.lineTo(x + w - 4, y + tabH);
-    ctx.quadraticCurveTo(x + w, y + tabH, x + w, y + tabH + 4); ctx.lineTo(x + w, y + h - 4); ctx.quadraticCurveTo(x + w, y + h, x + w - 4, y + h);
-    ctx.lineTo(x + 4, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - 4); ctx.lineTo(x, y + tabH + 4); ctx.quadraticCurveTo(x, y + tabH, x + 4, y + tabH);
-    ctx.closePath();
-  }
-  function drawFolder(ctx, s, x, y, w, h, open) {
-    const f = s.theme.flags, fc = f.folderColor ? s.theme.colors.folder : DEF.folder, big = w > 80;
-    const tex = f.folderTexture ? s.images[open ? 'folderOpen' : 'folderClosed'] : null;
-    shadowed(ctx, css(fc.shadow, 0.5), big ? 10 : 3, big ? 4 : 1, () => { folderPath(ctx, x, y, w, h); ctx.fillStyle = tex ? css(fc.main) : vgrad(ctx, fc.light, fc.main, y, y + h); ctx.fill(); });
-    if (tex) { ctx.save(); folderPath(ctx, x, y, w, h); ctx.clip(); ctx.drawImage(tex, x, y, w, h); ctx.restore(); return; }
-    const fy = y + h * (open ? 0.45 : 0.32);
-    ctx.fillStyle = vgrad(ctx, fc.main, fc.shading, fy, y + h); rr(ctx, x, fy, w, y + h - fy, 4); ctx.fill();
-    folderPath(ctx, x, y, w, h); ctx.strokeStyle = css(fc.shading, 0.6); ctx.lineWidth = 0.8; ctx.stroke();
-  }
-  function drawFile(ctx, s, x, y, w, h) {
-    const f = s.theme.flags, fc = f.fileColor ? s.theme.colors.file : DEF.file, cx = x + 6, cw = w - 12;
-    const tex = f.fileTexture ? (s.images.fileSmall || s.images.fileLarge) : null;
-    shadowed(ctx, cssA(fc.shadow), 4, 1.5, () => { rr(ctx, cx, y, cw, h, 3); ctx.fillStyle = tex ? css(fc.main) : vgrad(ctx, fc.light, fc.main, y, y + h); ctx.fill(); });
-    if (tex) { ctx.save(); rr(ctx, cx, y, cw, h, 3); ctx.clip(); ctx.drawImage(tex, cx, y, cw, h); ctx.restore(); return; }
-    ctx.strokeStyle = css(fc.shading); ctx.lineWidth = 1; rr(ctx, cx + 0.5, y + 0.5, cw - 1, h - 1, 3); ctx.stroke();
-    ctx.fillStyle = css(fc.shading, 0.55); rr(ctx, cx + 4, y + 6, cw - 8, h * 0.45, 2); ctx.fill();
-  }
-  function drawGeneric(ctx, x, y, w, h, tint, mark) {
-    shadowed(ctx, 'rgba(0,0,0,.28)', 3, 1, () => { ctx.fillStyle = vgrad(ctx, mix(tint, [255, 255, 255], 0.35), tint, y, y + h); rr(ctx, x, y, w, h, 7); ctx.fill(); });
-    ctx.fillStyle = 'rgba(255,255,255,.92)'; ctx.strokeStyle = 'rgba(255,255,255,.92)'; ctx.lineWidth = 2.4; ctx.lineCap = 'round';
-    const cx = x + w / 2, cy = y + h / 2;
-    switch (mark) {
-      case 'play': ctx.beginPath(); ctx.moveTo(cx - 5, cy - 8); ctx.lineTo(cx + 8, cy); ctx.lineTo(cx - 5, cy + 8); ctx.fill(); break;
-      case 'cam': rr(ctx, cx - 10, cy - 6, 20, 14, 3); ctx.fill(); ctx.fillStyle = css(tint); ctx.beginPath(); ctx.arc(cx, cy + 1, 4, 0, 7); ctx.fill(); break;
-      case 'note': ctx.beginPath(); ctx.arc(cx - 4, cy + 6, 3.5, 0, 7); ctx.fill(); ctx.fillRect(cx - 1.5, cy - 9, 2.5, 15); ctx.fillRect(cx - 1.5, cy - 9, 9, 3); break;
-      case 'globe': ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, 9, 0, 7); ctx.moveTo(cx - 9, cy); ctx.lineTo(cx + 9, cy); ctx.ellipse(cx, cy, 4, 9, 0, 0, 7); ctx.stroke(); break;
-      case 'gear': ctx.beginPath(); ctx.arc(cx, cy, 6, 0, 7); ctx.lineWidth = 4; ctx.setLineDash([3, 2.5]); ctx.stroke(); ctx.setLineDash([]); break;
-      default: ctx.beginPath(); for (let i = 0; i < 5; i++) { const a = -Math.PI / 2 + i * 4 * Math.PI / 5; ctx.lineTo(cx + Math.cos(a) * 9, cy + Math.sin(a) * 9); } ctx.fill();
+    if (f.demoTextColor && mode !== 'folder') {
+      const d = c.demoText; withShadow(ctx, 'rgba(0,0,0,.3)', 4, 0, 1, () => { rr(ctx, 116, 176, 180, 24, 6); ctx.fillStyle = css(d.main, 0.95); ctx.fill(); });
+      text(ctx, 'Remaining uses: 10', 206, 188.5, 11.5, css(d.text), 'center', 700);
     }
-  }
-
-  function drawBottom(ctx, s) {
-    const { theme, images, time, forExport, folderMode } = s, f = theme.flags, c = theme.colors;
-    ctx.save(); ctx.beginPath(); ctx.rect(0, 0, 320, 240); ctx.clip();
-    const inner = [12, 39, 296, 170];
-    const drawOuter = (o) => {
-      ctx.fillStyle = css(o.main); ctx.fillRect(0, 0, 320, 240);
-      let g = ctx.createLinearGradient(0, 0, 24, 0); g.addColorStop(0, css(o.glow)); g.addColorStop(1, css(o.main)); ctx.fillStyle = g; ctx.fillRect(0, 0, 24, 240);
-      g = ctx.createLinearGradient(296, 0, 320, 0); g.addColorStop(0, css(o.main)); g.addColorStop(1, css(o.glow)); ctx.fillStyle = g; ctx.fillRect(296, 0, 24, 240);
-      for (let i = 0; i < 7; i++) { ctx.strokeStyle = css(o.stripes, (1 - i / 7) / 2); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, 240 - 4 * i - 2.5); ctx.lineTo(320, 240 - 4 * i - 2.5); ctx.stroke(); }
-    };
-    const drawInner = (p) => {
-      shadowed(ctx, css(p.glow, 0.4), 8, 2, () => { ctx.fillStyle = css(p.main); rr(ctx, ...inner, 10); ctx.fill(); });
-      ctx.strokeStyle = css(p.border); ctx.lineWidth = 1; rr(ctx, inner[0] + 0.5, inner[1] + 0.5, inner[2] - 1, inner[3] - 1, 10); ctx.stroke();
-      ctx.strokeStyle = css(p.highlight, 0.6); ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(22, 210); ctx.lineTo(298, 210); ctx.stroke();
-    };
-    if (f.bottomDrawType === 3 && images.bottom) {
-      let x = 0;
-      if (!forExport) {
-        const t = f.bottomFrameType;
-        if (t === 0 || t === 3) x = (Math.sin(time / (t === 0 ? 2 : 3.5)) + 1) / 2 * (1008 - 320);
-        else if (t === 2) x = (Math.floor(time / 2.5) % 3) * 320;
-        else if (t === 4) x = [0, 1, 2, 1][Math.floor(time / 2.5) % 4] * 320;
-      }
-      ctx.drawImage(images.bottom, -x, 0);
-      if (folderMode && f.folderBackgroundColor) drawInner(c.folderBackground);
-    } else {
-      const custom = f.bottomDrawType === 1;
-      drawOuter(custom && f.bottomOuterColor ? c.bottomOuter : DEF.bottomOuter);
-      let ip = custom && f.bottomInnerColor ? c.bottomInner : DEF.bottomInner;
-      if (folderMode) ip = f.folderBackgroundColor ? c.folderBackground : ip;
-      drawInner(ip);
-    }
-    // icon grid
-    const home = [['folder'], ['app'], ['file'], ['g', [230, 70, 60], 'play'], ['g', [70, 150, 230], 'cam'], ['g', [240, 150, 40], 'note'], ['g', [60, 180, 120], 'globe'], ['g', [140, 140, 150], 'gear'], ['file'], ['g', [200, 90, 200], 'star']];
-    const folder = [['app'], ['file'], ['g', [230, 70, 60], 'play'], ['file'], ['g', [90, 120, 220], 'star']];
-    const icons = folderMode ? folder : home, size = 42, gap = (inner[2] - 5 * size) / 6, sy = inner[1] + (folderMode ? 40 : 22);
-    icons.forEach((ic, i) => {
-      const col = i % 5, row = Math.floor(i / 5), x = inner[0] + gap + col * (size + gap), y = sy + row * (size + 20);
-      if (ic[0] === 'folder') drawFolder(ctx, s, x + 1, y + 5, size - 2, size - 10, false);
-      else if (ic[0] === 'file') drawFile(ctx, s, x, y, size, size);
-      else if (ic[0] === 'app') {
-        shadowed(ctx, 'rgba(0,0,0,.28)', 3, 1, () => { rr(ctx, x, y, size, size, 7); ctx.fillStyle = '#4b6bf5'; ctx.fill(); });
-        if (s.icon) { ctx.save(); rr(ctx, x, y, size, size, 7); ctx.clip(); ctx.imageSmoothingEnabled = true; ctx.drawImage(s.icon, x, y, size, size); ctx.restore(); }
-      } else drawGeneric(ctx, x, y, size, size, ic[1], ic[2]);
-      if (i === 1) {
-        const cc = f.cursorColor ? c.cursor : DEF.cursor, pulse = forExport ? 0.6 : (Math.sin(time * 4) + 1) / 2;
-        ctx.save(); ctx.shadowColor = css(cc.glow, 0.9); ctx.shadowBlur = 6 + 6 * pulse; ctx.strokeStyle = css(cc.glow, 0.5 + 0.4 * pulse); ctx.lineWidth = 4; rr(ctx, x - 5, y - 5, size + 10, size + 10, 9); ctx.stroke(); ctx.restore();
-        const g = ctx.createLinearGradient(0, y - 5, 0, y + size + 5); g.addColorStop(0, css(cc.light)); g.addColorStop(0.5, css(cc.main)); g.addColorStop(1, css(cc.shading));
-        ctx.strokeStyle = g; ctx.lineWidth = 3; rr(ctx, x - 5, y - 5, size + 10, size + 10, 9); ctx.stroke();
-      }
-    });
-    // arrow buttons
-    const ab = f.arrowButtonColor ? c.arrowButton : DEF.arrowButton, ar = f.arrowColor ? c.arrow : DEF.arrow;
-    const pressedRight = !forExport && Math.floor(time / 1.5) % 4 === 3;
-    [[-10, 0], [304, 1]].forEach(([bx, i]) => {
-      shadowed(ctx, cssA(ab.shadow), 4, 1, () => { ctx.fillStyle = vgrad(ctx, ab.light, ab.main, 102, 146); rr(ctx, bx, 102, 26, 44, 9); ctx.fill(); });
-      ctx.strokeStyle = css(ab.shading); ctx.lineWidth = 1; rr(ctx, bx + 0.5, 102.5, 25, 43, 9); ctx.stroke();
-      const cx = i === 0 ? bx + 17 : bx + 9, dir = i === 0 ? -1 : 1;
-      ctx.beginPath(); ctx.moveTo(cx + 4 * dir, 124); ctx.lineTo(cx - 3 * dir, 118); ctx.lineTo(cx - 3 * dir, 130); ctx.closePath();
-      ctx.fillStyle = css(i === 1 && pressedRight ? ar.pressed : ar.unpressed); ctx.fill(); ctx.strokeStyle = css(ar.border); ctx.lineWidth = 0.8; ctx.stroke();
-    });
-    // top corners
-    const tc = f.topCornerColor ? c.topCorner : DEF.topCorner;
-    [[-8, 'sun'], [266, 'pencil']].forEach(([x, g]) => {
-      shadowed(ctx, css(tc.shadow, 0.45), 4, 1.5, () => { ctx.fillStyle = vgrad(ctx, tc.light, tc.main, -8, 24); rr(ctx, x, -8, 62, 32, 10); ctx.fill(); });
-      glyphs[g](ctx, x + 31 + (x < 0 ? 4 : -4), 12, css(tc.text));
-    });
-    // bottom corners
-    const bc = f.bottomCornerColor ? c.bottomCorner : DEF.bottomCorner;
-    [[-8, 'grid'], [266, 'brush']].forEach(([x, g]) => {
-      shadowed(ctx, css(bc.baseShadow, 0.45), 4, -1, () => { ctx.fillStyle = vgrad(ctx, bc.highlight, bc.main, 214, 248); rr(ctx, x, 214, 62, 34, 10); ctx.fill(); });
-      ctx.strokeStyle = css(bc.border); ctx.lineWidth = 1; rr(ctx, x + 0.5, 214.5, 61, 33, 10); ctx.stroke();
-      glyphs[g](ctx, x + 31 + (x < 0 ? 4 : -4), 227, css(mix(bc.iconTop, bc.iconBottom, 0.5)));
-    });
-    // open / close
-    const oc = f.openCloseColor ? (folderMode ? c.close : c.open) : (folderMode ? DEF.close : DEF.open);
-    const pressed = !forExport && Math.floor(time / 2) % 5 === 4;
-    shadowed(ctx, cssA(oc.shadow), 5, 1.5, () => { ctx.fillStyle = vgrad(ctx, oc.light, pressed ? oc.pressed : oc.unpressed, 213, 237); rr(ctx, 112, 213, 96, 24, 12); ctx.fill(); });
-    ctx.strokeStyle = css(oc.glow, 0.7); ctx.lineWidth = 1; rr(ctx, 112.5, 213.5, 95, 23, 12); ctx.stroke();
-    const label = folderMode ? 'Close' : 'Open', dy = Math.max(-3, Math.min(3, oc.textShadowPosition));
-    text(ctx, label, 160, 225 - dy, 13, css(oc.textShadow)); text(ctx, label, 160, 225, 13, css(pressed ? oc.textPressed : oc.textUnpressed));
-    // folder back button
-    if (folderMode) {
-      const fa = f.folderArrowColor ? c.folderArrow : DEF.folderArrow;
-      shadowed(ctx, cssA(fa.shadow), 4, 1.5, () => { ctx.fillStyle = vgrad(ctx, fa.highlight, fa.main, 46, 72); rr(ctx, 20, 46, 46, 26, 13); ctx.fill(); });
-      ctx.strokeStyle = css(fa.shading); ctx.lineWidth = 1; rr(ctx, 20.5, 46.5, 45, 25, 13); ctx.stroke();
-      glyphs.back(ctx, 43, 59, css(fa.arrowUnpressed));
-      ctx.fillStyle = css(fa.main, 0.85); rr(ctx, 76, 48, 150, 22, 6); ctx.fill(); text(ctx, 'My Folder', 151, 59, 12, css(fa.arrowUnpressed));
-    }
+    drawStatusBar(ctx, s);
+    drawCameraTabs(ctx, s);
+    if (!forExport) { ctx.fillStyle = 'rgba(0,0,0,.22)'; ctx.fillRect(0, 0, 6, 240); ctx.fillRect(406, 0, 6, 240); }
     ctx.restore();
   }
 
@@ -2143,12 +2452,31 @@ const Preview = (() => {
     const c = document.createElement('canvas'); c.width = 412; c.height = 480;
     const ctx = c.getContext('2d');
     ctx.fillStyle = '#141414'; ctx.fillRect(0, 0, 412, 480);
-    const s = { ...state, time: 0, forExport: true, folderMode: false };
+    const s = { ...state, time: 0, forExport: true, mode: 'home', folderMode: false };
     drawTop(ctx, s);
     ctx.save(); ctx.translate(46, 240); drawBottom(ctx, s); ctx.restore();
     return c;
   }
-  return { drawTop, drawBottom, exportCanvas };
+
+  // ───────────── Console shell around the two screens ─────────────
+  /** Size of the console drawing in console pixels, used to scale it to the pane. */
+  function shellSize(compact) { return compact ? [440, 540] : [480, 622]; }
+  function mountShell(consoleEl) {
+    if (!consoleEl || consoleEl.classList.contains('ds')) return;
+    const [topBezel, botBezel] = consoleEl.querySelectorAll('.bezel');
+    const mk = (cls, ...kids) => { const d = document.createElement('div'); d.className = cls; kids.forEach((k) => d.append(k)); return d; };
+    const dots = (cls) => { const g = mk('ds-spk ' + cls); for (let i = 0; i < 21; i++) g.append(mk('d')); return g; };
+    const top = mk('ds-shell ds-top', mk('ds-cam'), dots('l'), dots('r'), mk('ds-slider', mk('k')), mk('ds-3d', '3D'), topBezel);
+    const hinge = mk('ds-hinge', mk('ds-led'));
+    const pad = mk('ds-cpad', mk('n')), dpad = mk('ds-dpad', mk('h'), mk('v'), mk('c'));
+    const btn = (l, cls) => { const b = mk('b ' + cls); b.textContent = l; return b; };
+    const abxy = mk('ds-abxy', btn('X', 'x'), btn('Y', 'y'), btn('A', 'a'), btn('B', 'b2'));
+    const row = mk('ds-row', mk('ds-sm', 'SELECT'), mk('ds-home'), mk('ds-sm', 'START'));
+    const bottom = mk('ds-shell ds-bot', pad, dpad, abxy, mk('ds-power'), botBezel, row, mk('ds-mic'));
+    consoleEl.classList.add('ds'); consoleEl.innerHTML = ''; consoleEl.append(top, hinge, bottom);
+  }
+
+  return { drawTop, drawBottom, exportCanvas, mountShell, shellSize, MODES: [['home', 'Home'], ['folder', 'Folder'], ['zoom', 'Big Icons'], ['paused', 'Suspended']], REAL };
 })();
 
 </script>
@@ -2258,7 +2586,10 @@ const App = {
   palette: [],
   bgm: { data: null, source: null, sourceName: null, sourcePath: null, preview: null, busy: false, progress: 0, settings: { rate: 32000, mono: false, loopStart: 0, edit: TK.AudioProcess.defaultEdit() } },
   sfx: new Array(8).fill(null), sfxNames: new Array(8).fill(null),
-  section: 'info', animate: true, folderMode: false, dirty: false, path: null,
+  section: 'info', animate: true, previewMode: 'home', dirty: false, path: null,
+  get folderMode() { return this.previewMode === 'folder'; },
+  set folderMode(v) { this.previewMode = v ? 'folder' : 'home'; },
+  showPreview(mode) { if (mode && this.previewMode !== mode) { this.previewMode = mode; this.renderPreviewControls(); } },
   undoStack: [], redoStack: [], lastSnap: null, lastPush: 0, paletteTimer: null,
 
   // ───── change tracking ─────
@@ -2530,8 +2861,8 @@ const App = {
   },
 
   // ───── rendering ─────
-  previewState() { return { theme: this.theme, images: { ...this.images, __defaultPattern: this.defaultPatternCanvas }, icon: this.iconCanvas, folderMode: this.folderMode, time: 0, forExport: false }; },
-  go(section) { this.section = section; Audio3DS.stop(); this.renderSidebar(); this.renderPage(); document.getElementById('editor').scrollTop = 0; const act = document.querySelector('#sidebar .nav-item.active'); if (act && window.innerWidth <= 860) act.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); },
+  previewState() { return { theme: this.theme, images: { ...this.images, __defaultPattern: this.defaultPatternCanvas }, icon: this.iconCanvas, mode: this.previewMode, title: this.name || 'My Theme', time: 0, forExport: false }; },
+  go(section) { this.section = section; Audio3DS.stop(); this.showPreview({ icons: 'home', buttons: 'home', top: 'home', bottom: 'home', folderView: 'folder', text: 'zoom' }[section]); this.renderSidebar(); this.renderPage(); document.getElementById('editor').scrollTop = 0; const act = document.querySelector('#sidebar .nav-item.active'); if (act && window.innerWidth <= 860) act.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); },
   renderAll() { this.renderSidebar(); this.renderPage(); this.updateTopbar(); this.renderPreviewControls(); },
   updateTopbar() {
     document.getElementById('docName').textContent = this.displayName();
@@ -2576,17 +2907,22 @@ const App = {
   renderPreviewControls() {
     const c = document.getElementById('previewControls'); c.innerHTML = '';
     c.append(
-      segmented([[false, 'Home'], [true, 'Folder']], this.folderMode, (v) => { this.folderMode = v; this.renderPreviewControls(); }),
+      segmented(Preview.MODES, this.previewMode, (v) => { this.previewMode = v; this.renderPreviewControls(); if (this.section === 'folderView') this.renderPage(); }),
       btn(this.animate ? 'Pause' : 'Play', this.animate ? 'pause' : 'play', () => { this.animate = !this.animate; this.renderPreviewControls(); }, 'small'),
       btn('Save preview.png', 'image', () => this.savePreview(), 'small ghost'),
     );
   },
   startPreviewLoop() {
-    const top = document.getElementById('topCanvas'), bot = document.getElementById('bottomCanvas'), pane = document.getElementById('preview');
+    const top = document.getElementById('topCanvas'), bot = document.getElementById('bottomCanvas'), pane = document.getElementById('preview'), shell = document.getElementById('console');
+    Preview.mountShell(shell);
     let frozen = 0;
     const frame = (ts) => {
       const dpr = window.devicePixelRatio || 1;
-      const mob = window.innerWidth <= 860; const scale = Math.max(mob ? 0.2 : 0.6, Math.min(2.2, (pane.clientWidth - (mob ? 24 : 70)) / 430, (pane.clientHeight - (mob ? 78 : 140)) / (mob ? 494 : 512)));
+      const mob = window.innerWidth <= 860, padX = mob ? 16 : 40, padY = mob ? 64 : 120;
+      const fits = (c) => { const [w, h] = Preview.shellSize(c); return Math.min((pane.clientWidth - padX) / w, (pane.clientHeight - padY) / h); };
+      const compact = mob || fits(false) < 0.62, scale = Math.max(mob ? 0.2 : 0.45, Math.min(2.2, fits(compact)));
+      if (compact !== shell.classList.contains('compact')) shell.classList.toggle('compact', compact);
+      if (shell.style.getPropertyValue('--s') !== String(scale)) shell.style.setProperty('--s', String(scale));
       for (const [cv, w] of [[top, 412], [bot, 320]]) {
         const W = Math.round(w * scale * dpr), H = Math.round(240 * scale * dpr);
         if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; cv.style.width = W / dpr + 'px'; cv.style.height = H / dpr + 'px'; }
@@ -2790,28 +3126,28 @@ const Pages = {
       toggleCard('Folder Pictures', 'image', 'Wrap your own art onto folder icons (both pictures required).', () => f.folderTexture, (v) => { f.folderTexture = v; }, () => [
         el('div', { class: 'cols2' }, imageSlot('folderClosed', 'Closed', '128 × 64', 90), imageSlot('folderOpen', 'Open', '128 × 64', 90)),
         !(t.folderClosed && t.folderOpen) ? banner('Add both the closed and open pictures, or folder pictures won\'t be included.', 'warn', true) : null], 'Folders use their colors. Turn on to add pictures.'),
-      toggleCard('File Colors', 'file', 'Colors of the 3D file / cartridge icons.', () => f.fileColor, (v) => { f.fileColor = v; }, () => [
+      toggleCard('File Colors', 'file', 'The frame around each software icon in the grid.', () => f.fileColor, (v) => { f.fileColor = v; }, () => [
         colorRow('Main', null, () => c.file.main, (v) => { c.file.main = v; }),
         colorRow('Light', null, () => c.file.light, (v) => { c.file.light = v; }),
         colorRow('Shading', null, () => c.file.shading, (v) => { c.file.shading = v; }),
         colorAlphaRow('Shadow', null, () => c.file.shadow, (v) => { c.file.shadow = v; })]),
-      toggleCard('File Pictures', 'image', 'Your own art on file icons (both pictures required).', () => f.fileTexture, (v) => { f.fileTexture = v; }, () => [
+      toggleCard('File Pictures', 'image', 'Your own art for the frame around software icons (both pictures required).', () => f.fileTexture, (v) => { f.fileTexture = v; }, () => [
         el('div', { class: 'cols2' }, imageSlot('fileLarge', 'Large', '64 × 128', 110), imageSlot('fileSmall', 'Small', '32 × 64', 110)),
         !(t.fileLarge && t.fileSmall) ? banner('Add both the large and small pictures, or file pictures won\'t be included.', 'warn', true) : null], 'Files use their colors. Turn on to add pictures.'));
   },
 
   buttons() {
     const f = F(), c = C();
-    const oc = (title, o) => [el('b', { class: 'muted small', style: { marginTop: '4px' } }, title),
-      colorRow('Button', null, () => o.unpressed, (v) => { o.unpressed = v; }),
-      colorRow('Button (Pressed)', null, () => o.pressed, (v) => { o.pressed = v; }),
-      colorRow('Highlight', null, () => o.light, (v) => { o.light = v; }),
-      colorRow('Glow / Edge', null, () => o.glow, (v) => { o.glow = v; }),
-      colorAlphaRow('Shadow', null, () => o.shadow, (v) => { o.shadow = v; }),
-      colorRow('Text', null, () => o.textUnpressed, (v) => { o.textUnpressed = v; }),
-      colorRow('Text (Pressed)', null, () => o.textPressed, (v) => { o.textPressed = v; }),
-      colorRow('Text Shadow', null, () => o.textShadow, (v) => { o.textShadow = v; }),
-      slider('Text Shadow Offset', () => o.textShadowPosition, (v) => { o.textShadowPosition = v; }, -3, 3, 0.25, title.startsWith('Open') ? -1.25 : 1, (v) => (v >= 0 ? '+' : '') + v.toFixed(2))];
+    const oc = (title, o) => { const pv = () => App.showPreview(title.startsWith('Close') ? 'paused' : null); return [el('b', { class: 'muted small', style: { marginTop: '4px' } }, title),
+      colorRow('Button', null, () => o.unpressed, (v) => { pv(); o.unpressed = v; }),
+      colorRow('Button (Pressed)', null, () => o.pressed, (v) => { pv(); o.pressed = v; }),
+      colorRow('Highlight', null, () => o.light, (v) => { pv(); o.light = v; }),
+      colorRow('Glow / Edge', null, () => o.glow, (v) => { pv(); o.glow = v; }),
+      colorAlphaRow('Shadow', null, () => o.shadow, (v) => { pv(); o.shadow = v; }),
+      colorRow('Text', null, () => o.textUnpressed, (v) => { pv(); o.textUnpressed = v; }),
+      colorRow('Text (Pressed)', null, () => o.textPressed, (v) => { pv(); o.textPressed = v; }),
+      colorRow('Text Shadow', null, () => o.textShadow, (v) => { pv(); o.textShadow = v; }),
+      slider('Text Shadow Offset', () => o.textShadowPosition, (v) => { pv(); o.textShadowPosition = v; }, -3, 3, 0.25, title.startsWith('Open') ? -1.25 : 1, (v) => (v >= 0 ? '+' : '') + v.toFixed(2))]; };
     return page(pageHead(sec('buttons'), 'The scroll arrows, the Open/Close button and the corner buttons on the bottom screen.'), Pages.paletteCard(),
       toggleCard('Arrow Buttons', 'arrows', 'The tabs on the left and right edges used to scroll.', () => f.arrowButtonColor, (v) => { f.arrowButtonColor = v; }, () => [
         colorRow('Main', null, () => c.arrowButton.main, (v) => { c.arrowButton.main = v; }),
@@ -2822,14 +3158,14 @@ const Pages = {
         colorRow('Arrow', null, () => c.arrow.unpressed, (v) => { c.arrow.unpressed = v; }),
         colorRow('Arrow (Pressed)', null, () => c.arrow.pressed, (v) => { c.arrow.pressed = v; }),
         colorRow('Outline', null, () => c.arrow.border, (v) => { c.arrow.border = v; })]),
-      toggleCard('Open & Close Buttons', 'buttons', '“Open” appears when software is selected; “Close” appears in folders.', () => f.openCloseColor, (v) => { f.openCloseColor = v; }, () => [
+      toggleCard('Open & Close Buttons', 'buttons', 'The bar along the bottom of the touch screen. “Close” takes up its left side while software is suspended.', () => f.openCloseColor, (v) => { f.openCloseColor = v; }, () => [
         ...oc('Open Button', c.open), el('div', { class: 'divider' }), ...oc('Close Button', c.close)]),
-      toggleCard('Top Corner Buttons', 'corner', 'The buttons in the top-left and top-right of the bottom screen.', () => f.topCornerColor, (v) => { f.topCornerColor = v; }, () => [
+      toggleCard('Camera Tabs', 'corner', 'The camera shortcut tabs in the lower corners of the top screen.', () => f.topCornerColor, (v) => { f.topCornerColor = v; }, () => [
         colorRow('Main', null, () => c.topCorner.main, (v) => { c.topCorner.main = v; }),
         colorRow('Light', null, () => c.topCorner.light, (v) => { c.topCorner.light = v; }),
         colorRow('Shadow', null, () => c.topCorner.shadow, (v) => { c.topCorner.shadow = v; }),
         colorRow('Icon / Text', null, () => c.topCorner.text, (v) => { c.topCorner.text = v; })]),
-      toggleCard('Bottom Corner Buttons', 'corner', 'The buttons in the bottom-left and bottom-right corners.', () => f.bottomCornerColor, (v) => { f.bottomCornerColor = v; }, () => [
+      toggleCard('Settings & Icon Size Buttons', 'corner', 'The HOME Menu settings and icon size buttons along the top of the touch screen.', () => f.bottomCornerColor, (v) => { f.bottomCornerColor = v; }, () => [
         colorRow('Main', null, () => c.bottomCorner.main, (v) => { c.bottomCorner.main = v; }),
         colorRow('Highlight', null, () => c.bottomCorner.highlight, (v) => { c.bottomCorner.highlight = v; }),
         colorRow('Border', null, () => c.bottomCorner.border, (v) => { c.bottomCorner.border = v; }),
@@ -2841,7 +3177,7 @@ const Pages = {
 
   folderView() {
     const f = F(), c = C();
-    return page(pageHead(sec('folderView'), 'How the bottom screen looks while a folder is open. Switch the preview to Folder to see it.'), Pages.paletteCard(),
+    return page(pageHead(sec('folderView'), 'How the bottom screen looks while a folder is open. The preview shows the Folder view while you\'re on this page.'), Pages.paletteCard(),
       toggleCard('Folder Background', 'square', 'The inner panel shown inside folders.', () => f.folderBackgroundColor, (v) => { f.folderBackgroundColor = v; }, () => [
         colorRow('Panel Color', null, () => c.folderBackground.main, (v) => { c.folderBackground.main = v; }),
         colorRow('Border', null, () => c.folderBackground.border, (v) => { c.folderBackground.border = v; }),
@@ -2861,16 +3197,16 @@ const Pages = {
 
   text() {
     const f = F(), c = C();
-    return page(pageHead(sec('text'), 'Text boxes on the top screen, like the selected software\'s title.'), Pages.paletteCard(),
-      card(cardHead('Software Title Box', 'text', 'The box showing the name of the selected software.'),
+    return page(pageHead(sec('text'), 'The software title box shown at the biggest icon size, and the demo message. The preview shows Big Icons while you\'re on this page.'), Pages.paletteCard(),
+      card(cardHead('Software Title Box', 'text', 'The name of the selected software, shown above the cursor when icons are at their biggest size.'),
         segmented([[0, 'Default'], [1, 'Custom Colors'], [2, 'Hidden']], f.gameTextDrawType, (v) => { f.gameTextDrawType = v; App.changed(true); }),
         f.gameTextDrawType === 1 ? el('div', {},
           colorRow('Box', null, () => c.gameText.main, (v) => { c.gameText.main = v; }),
           colorRow('Highlight', null, () => c.gameText.light, (v) => { c.gameText.light = v; }),
           colorAlphaRow('Shadow', null, () => c.gameText.shadow, (v) => { c.gameText.shadow = v; }),
           colorRow('Text', null, () => c.gameText.text, (v) => { c.gameText.text = v; })) : null,
-        f.gameTextDrawType === 2 ? el('div', { class: 'muted' }, 'The one-row title box is hidden, leaving your top wallpaper unobstructed.') : null),
-      toggleCard('Demo Text', 'text', 'Box used for demo and informational text on the top screen.', () => f.demoTextColor, (v) => { f.demoTextColor = v; }, () => [
+        f.gameTextDrawType === 2 ? el('div', { class: 'muted' }, 'The title box above big icons is hidden.') : null),
+      toggleCard('Demo Text', 'text', 'The message on the top screen that shows how many uses a demo has left.', () => f.demoTextColor, (v) => { f.demoTextColor = v; }, () => [
         colorRow('Box', null, () => c.demoText.main, (v) => { c.demoText.main = v; }),
         colorRow('Text', null, () => c.demoText.text, (v) => { c.demoText.text = v; })]));
   },
