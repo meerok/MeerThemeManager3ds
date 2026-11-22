@@ -12,6 +12,7 @@
   <a href="https://github.com/meerok/MeerThemeManager3ds/releases/latest"><img alt="Download for Windows" src="https://img.shields.io/badge/Windows-download-5b7cff?style=for-the-badge&logo=windows"></a>
   <a href="https://github.com/meerok/MeerThemeManager3ds/releases/latest"><img alt="Download for macOS" src="https://img.shields.io/badge/macOS-download-333?style=for-the-badge&logo=apple"></a>
   <a href="https://github.com/meerok/MeerThemeManager3ds/releases/latest"><img alt="Download for Linux" src="https://img.shields.io/badge/Linux-download-e95420?style=for-the-badge&logo=linux&logoColor=white"></a>
+  <a href="https://meerok.github.io/MeerThemeManager3ds/"><img alt="Use it in your browser" src="https://img.shields.io/badge/Web-open%20in%20browser-ff8a3d?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
   <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-3ddc97?style=for-the-badge">
 </p>
 
@@ -21,7 +22,7 @@
 
 I made MtM3 because putting a 3DS theme together usually means juggling a theme editor, an audio looper and an image resizer. This does all of it in one app. You give it normal pictures and songs (PNG, JPG, MP3 and so on) and it handles the resizing, the 3DS texture format, the looping `bgm.bcstm`, `info.smdh` and `preview.png`. There's a live preview of both screens so you can see what it'll look like on the console while you edit.
 
-It runs on **Windows, Mac and Linux**, and it's free and open source.
+It runs on **Windows, Mac and Linux**, and there's also a **[web version](https://meerok.github.io/MeerThemeManager3ds/)** that works in any browser, phones included. It's free and open source.
 
 ---
 
@@ -100,6 +101,10 @@ cd MtM3
 ```
 
 > If it closes straight away with a message about the "sandbox", start it with `./mtm3 --no-sandbox`. Some distros (like newer Ubuntu) block the sandbox Electron apps use by default.
+
+### Web version (no install)
+
+Open **[meerok.github.io/MeerThemeManager3ds](https://meerok.github.io/MeerThemeManager3ds/)** in any modern browser, on a computer or a phone. It has the same editor, music converter and export as the apps, and everything runs on your device (nothing gets uploaded). A few things only the apps can do: sending a theme to CHMM2 over Wi-Fi, and opening a theme *folder* on a phone (open the theme's `.zip` or `body_LZ.bin` instead).
 
 ### What you need on your 3DS
 
@@ -400,7 +405,7 @@ MtM3/
 │   └── scripts/package-win.js   builds MtM3.exe (sets the icon and version info without Wine)
 ├── macos/                   macOS app (SwiftUI), ThemeKit Swift package and mtm3-cli
 ├── sample-theme/            "Neon Sunset", an example theme made with MtM3, plus its source art and audio
-├── docs/                    screenshots, logo, file format reference
+├── docs/                    screenshots, logo, file format reference, and the web version (index.html)
 └── .github/workflows/       builds the Windows, macOS and Linux downloads for each release
 ```
 
